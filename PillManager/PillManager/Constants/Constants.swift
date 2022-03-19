@@ -19,8 +19,4 @@ public var window: UIWindow? {
     return window
 }
 
-public var calendar: Calendar {
-    var calendar = Calendar.current
-    calendar.timeZone = .init(identifier: "KST") ?? .current
-    return calendar
-}
+public var calendar: Calendar = .current
