@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class PillViewController: UIViewController {
     
@@ -47,21 +48,15 @@ class PillViewController: UIViewController {
     
     private func bind() {
         viewModel.$status.sink { [weak self] status in
-            self?.button.isEnabled = false
-            switch status {
-            case .not_yet:
-                self?.button.setTitle("I have the pill", for: .normal)
-                self?.button.isEnabled = true
-            case .have:
-                self?.button.setTitle("Already I have the pill", for: .normal)
-            case .loading:
-                self?.button.setTitle("Please wait...", for: .normal)
-            }
+            self?.button.isEnabled = status == .not_yet
+            self?.button.setTitle(status.rawValue, for: .normal)
         }.store(in: &viewModel.cancellables)
         
         viewModel.$error.compactMap({ $0 }).sink { [weak self] error in
             let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-            let yes = UIAlertAction(title: "Yes", style: .default)
+            let yes = UIAlertAction(title: "Yes", style: .default) { _ in
+                try? Auth.auth().signOut()
+            }
             alert.addAction(yes)
             self?.present(alert, animated: true)
         }.store(in: &viewModel.cancellables)
