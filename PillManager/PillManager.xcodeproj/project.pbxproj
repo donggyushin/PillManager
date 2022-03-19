@@ -61,7 +61,6 @@
 				70F6AD1A27E62AF700F61642 /* Config */,
 				70F6AD0C27E62AE600F61642 /* Main.storyboard */,
 				70F6AD1127E62AE600F61642 /* LaunchScreen.storyboard */,
-				70F6AD1427E62AE600F61642 /* Info.plist */,
 			);
 			path = PillManager;
 			sourceTree = "<group>";
@@ -69,6 +68,7 @@
 		70F6AD1A27E62AF700F61642 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				70F6AD1427E62AE600F61642 /* Info.plist */,
 				70F6AD0627E62AE600F61642 /* AppDelegate.swift */,
 				70F6AD0827E62AE600F61642 /* SceneDelegate.swift */,
 			);
