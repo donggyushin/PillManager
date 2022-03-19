@@ -22,6 +22,6 @@ class SignInViewController: UIViewController {
     }
     
     private func configUI() {
-        view.backgroundColor = .systemBackground
+        
     }
 }

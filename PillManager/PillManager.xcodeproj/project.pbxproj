@@ -56,11 +56,10 @@
 		70F6AD2B27E62E5900F61642 /* PillManager */ = {
 			isa = PBXGroup;
 			children = (
+				70F6AD3A27E62E5900F61642 /* Info.plist */,
+				70F6AD4427E62F5900F61642 /* Resources */,
 				70F6AD4127E62EA700F61642 /* ViewController */,
 				70F6AD4027E62E9E00F61642 /* Config */,
-				70F6AD3527E62E5900F61642 /* Assets.xcassets */,
-				70F6AD3727E62E5900F61642 /* LaunchScreen.storyboard */,
-				70F6AD3A27E62E5900F61642 /* Info.plist */,
 			);
 			path = PillManager;
 			sourceTree = "<group>";
@@ -81,6 +80,15 @@
 				70F6AD4227E62EB800F61642 /* SignInViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		70F6AD4427E62F5900F61642 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				70F6AD3727E62E5900F61642 /* LaunchScreen.storyboard */,
+				70F6AD3527E62E5900F61642 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
