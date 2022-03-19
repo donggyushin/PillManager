@@ -6,11 +6,20 @@
 //
 
 import UIKit
+import FirebaseAuth
+
+var window: UIWindow? {
+    guard let scene = UIApplication.shared.connectedScenes.first,
+          let windowSceneDelegate = scene.delegate as? UIWindowSceneDelegate,
+          let window = windowSceneDelegate.window else {
+              return nil
+          }
+    return window
+}
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -18,8 +27,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         window = .init(windowScene: scene)
-        window?.rootViewController = SignInViewController()
         window?.makeKeyAndVisible()
+        Auth.auth().addStateDidChangeListener { auth, user in
+            self.window?.rootViewController = user == nil ? SignInViewController() : PillViewController()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -7,6 +7,8 @@
 
 import AuthenticationServices
 import Combine
+import CryptoKit
+import FirebaseAuth
 
 class SignInViewModel: NSObject {
     
@@ -34,8 +36,23 @@ extension SignInViewModel: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         self.loading = false
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            let userIdentifier = appleIDCredential.user
-            print("DEBUG: userIdentifier: \(userIdentifier)")
+            
+            guard let appleIDToken = appleIDCredential.identityToken else {
+                print("Unable to fetch identity token")
+                return
+            }
+            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+              print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+              return
+            }
+            
+            let credential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                      idToken: idTokenString,
+                                                      rawNonce: nil)
+            
+            Auth.auth().signIn(with: credential) { [weak self] result, error in
+                self?.error = error
+            }
         }
     }
     
