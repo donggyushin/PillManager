@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class SignInViewController: UIViewController {
     
@@ -22,6 +23,8 @@ class SignInViewController: UIViewController {
         return view
     }()
     
+    private lazy var viewModel: SignInViewModel = .init(viewController: self)
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -32,6 +35,7 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         configUI()
+        bind()
     }
     
     private func configUI() {
@@ -46,11 +50,24 @@ class SignInViewController: UIViewController {
         ])
     }
     
+    private func bind() {
+        viewModel.$loading.sink { [weak self] loading in
+            self?.signInButton.isEnabled = !loading
+        }.store(in: &viewModel.cancellables)
+        
+        viewModel.$error.compactMap({ $0 }).sink { [weak self] error in
+            let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+            let okay = UIAlertAction(title: "Yes", style: .default)
+            alert.addAction(okay)
+            self?.present(alert, animated: true)
+        }.store(in: &viewModel.cancellables)
+    }
+    
     private func showOnlyAppleSignInAvailableAlert() {
         let alert: UIAlertController = .init(title: nil, message: "This application only allow apple sign in. Do you wanna go on?", preferredStyle: .actionSheet)
         
         let okay: UIAlertAction = .init(title: "Yes", style: .default) { _ in
-            print("DEBUG: start apple sign in")
+            self.startAppleSignIn()
         }
         
         let no: UIAlertAction = .init(title: "No", style: .cancel)
@@ -59,5 +76,14 @@ class SignInViewController: UIViewController {
         alert.addAction(no)
         
         present(alert, animated: true)
+    }
+    
+    private func startAppleSignIn() {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = viewModel
+        controller.presentationContextProvider = viewModel
+        controller.performRequests()
+        viewModel.loading = true
     }
 }

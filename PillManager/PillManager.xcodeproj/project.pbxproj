@@ -10,6 +10,7 @@
 		7006461827E636EC00060F52 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7006461727E636EC00060F52 /* GoogleService-Info.plist */; };
 		7006461C27E6384000060F52 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7006461B27E6384000060F52 /* FirebaseAuth */; };
 		7006461E27E6384000060F52 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7006461D27E6384000060F52 /* FirebaseFirestore */; };
+		7006462427E63D0700060F52 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006462327E63D0700060F52 /* SignInViewModel.swift */; };
 		70F6AD2D27E62E5900F61642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F6AD2C27E62E5900F61642 /* AppDelegate.swift */; };
 		70F6AD2F27E62E5900F61642 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F6AD2E27E62E5900F61642 /* SceneDelegate.swift */; };
 		70F6AD3627E62E5900F61642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70F6AD3527E62E5900F61642 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		7006461727E636EC00060F52 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7006461F27E6399400060F52 /* PillManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PillManager.entitlements; sourceTree = "<group>"; };
+		7006462327E63D0700060F52 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		70F6AD2927E62E5900F61642 /* PillManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PillManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70F6AD2C27E62E5900F61642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70F6AD2E27E62E5900F61642 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				70F6AD4827E631D600F61642 /* PillViewModel.swift */,
+				7006462327E63D0700060F52 /* SignInViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 			files = (
 				70F6AD4927E631D600F61642 /* PillViewModel.swift in Sources */,
 				70F6AD4327E62EB800F61642 /* SignInViewController.swift in Sources */,
+				7006462427E63D0700060F52 /* SignInViewModel.swift in Sources */,
 				70F6AD2D27E62E5900F61642 /* AppDelegate.swift in Sources */,
 				70F6AD2F27E62E5900F61642 /* SceneDelegate.swift in Sources */,
 				70F6AD4627E6319F00F61642 /* PillViewController.swift in Sources */,
