@@ -11,9 +11,9 @@ import Combine
 class PillViewModel {
     
     enum Status: String {
-        case have
-        case not_yet
-        case loading
+        case have = "I already have pills"
+        case not_yet = "I just have pills"
+        case loading = "Waiting..."
     }
     
     @Published var status: Status = .loading
