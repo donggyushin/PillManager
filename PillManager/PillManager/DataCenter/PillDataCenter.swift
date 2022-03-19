@@ -38,7 +38,11 @@ final class PillDataCenter {
             if let error = error {
                 completion?(.failure(error))
             } else {
-                completion?(.success(document?.data()?["date"] as? Date))
+                if let timestamp = document?.data()?["date"] as? Timestamp {
+                    completion?(.success(timestamp.dateValue()))
+                } else {
+                    completion?(.success(nil))
+                }
             }
         }
     }

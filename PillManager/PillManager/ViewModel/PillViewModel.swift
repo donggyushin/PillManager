@@ -42,7 +42,6 @@ class PillViewModel {
     
     private func bind() {
         $pillDate.sink { [weak self] date in
-            
             guard let date = date else {
                 self?.status = .not_yet
                 return
