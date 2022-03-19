@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 
+public let db = Firestore.firestore()
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
