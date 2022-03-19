@@ -9,10 +9,10 @@ import UIKit
 
 class PillViewController: UIViewController {
     
-    private let viewModel: PillViewModel = .init()
+    private let viewModel: PillViewModel = .init(pillDataCenter: PillDataCenter.default)
     
     private lazy var button: UIButton = .init(configuration: .tinted(), primaryAction: .init(handler: { _ in
-        self.buttonTapped()
+        self.viewModel.buttonTapped()
     }))
     
     private lazy var verticalStackView: UIStackView = {
@@ -58,9 +58,12 @@ class PillViewController: UIViewController {
                 self?.button.setTitle("Please wait...", for: .normal)
             }
         }.store(in: &viewModel.cancellables)
-    }
-    
-    private func buttonTapped() {
-        print("DEBUG: Button Tapped")
+        
+        viewModel.$error.compactMap({ $0 }).sink { [weak self] error in
+            let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+            let yes = UIAlertAction(title: "Yes", style: .default)
+            alert.addAction(yes)
+            self?.present(alert, animated: true)
+        }.store(in: &viewModel.cancellables)
     }
 }

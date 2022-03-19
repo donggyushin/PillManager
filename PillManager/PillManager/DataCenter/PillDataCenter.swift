@@ -26,7 +26,7 @@ final class PillDataCenter {
         ], completion: completion)
     }
     
-    func getPillDate(completion: ((Result<Date, Error>) -> Void)? = nil) {
+    func getPillDate(completion: ((Result<Date?, Error>) -> Void)? = nil) {
         
         guard let uid = Auth.auth().currentUser?.uid else {
             let error: MyError = .not_authorized
@@ -37,11 +37,8 @@ final class PillDataCenter {
         db.collection("pills").document(uid).getDocument { document, error in
             if let error = error {
                 completion?(.failure(error))
-            }
-            
-            if let data = document?.data() {
-                let date = data["date"] as? Date ?? Date()
-                completion?(.success(date))
+            } else {
+                completion?(.success(document?.data()?["date"] as? Date))
             }
         }
     }
