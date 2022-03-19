@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7006461827E636EC00060F52 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7006461727E636EC00060F52 /* GoogleService-Info.plist */; };
+		7006461C27E6384000060F52 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7006461B27E6384000060F52 /* FirebaseAuth */; };
+		7006461E27E6384000060F52 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7006461D27E6384000060F52 /* FirebaseFirestore */; };
 		70F6AD2D27E62E5900F61642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F6AD2C27E62E5900F61642 /* AppDelegate.swift */; };
 		70F6AD2F27E62E5900F61642 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F6AD2E27E62E5900F61642 /* SceneDelegate.swift */; };
 		70F6AD3627E62E5900F61642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70F6AD3527E62E5900F61642 /* Assets.xcassets */; };
@@ -17,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7006461727E636EC00060F52 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70F6AD2927E62E5900F61642 /* PillManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PillManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70F6AD2C27E62E5900F61642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70F6AD2E27E62E5900F61642 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7006461C27E6384000060F52 /* FirebaseAuth in Frameworks */,
+				7006461E27E6384000060F52 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,8 +64,9 @@
 		70F6AD2B27E62E5900F61642 /* PillManager */ = {
 			isa = PBXGroup;
 			children = (
-				70F6AD4727E631C200F61642 /* ViewModel */,
 				70F6AD3A27E62E5900F61642 /* Info.plist */,
+				7006461727E636EC00060F52 /* GoogleService-Info.plist */,
+				70F6AD4727E631C200F61642 /* ViewModel */,
 				70F6AD4427E62F5900F61642 /* Resources */,
 				70F6AD4127E62EA700F61642 /* ViewController */,
 				70F6AD4027E62E9E00F61642 /* Config */,
@@ -118,6 +125,10 @@
 			dependencies = (
 			);
 			name = PillManager;
+			packageProductDependencies = (
+				7006461B27E6384000060F52 /* FirebaseAuth */,
+				7006461D27E6384000060F52 /* FirebaseFirestore */,
+			);
 			productName = PillManager;
 			productReference = 70F6AD2927E62E5900F61642 /* PillManager.app */;
 			productType = "com.apple.product-type.application";
@@ -146,6 +157,9 @@
 				Base,
 			);
 			mainGroup = 70F6AD2027E62E5900F61642;
+			packageReferences = (
+				7006461A27E6384000060F52 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 70F6AD2A27E62E5900F61642 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -162,6 +176,7 @@
 			files = (
 				70F6AD3927E62E5900F61642 /* LaunchScreen.storyboard in Resources */,
 				70F6AD3627E62E5900F61642 /* Assets.xcassets in Resources */,
+				7006461827E636EC00060F52 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +337,7 @@
 				INFOPLIST_FILE = PillManager/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -349,6 +365,7 @@
 				INFOPLIST_FILE = PillManager/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -386,6 +403,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7006461A27E6384000060F52 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7006461B27E6384000060F52 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7006461A27E6384000060F52 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		7006461D27E6384000060F52 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7006461A27E6384000060F52 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 70F6AD2127E62E5900F61642 /* Project object */;
 }
