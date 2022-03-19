@@ -12,6 +12,8 @@
 		70F6AD3627E62E5900F61642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70F6AD3527E62E5900F61642 /* Assets.xcassets */; };
 		70F6AD3927E62E5900F61642 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70F6AD3727E62E5900F61642 /* LaunchScreen.storyboard */; };
 		70F6AD4327E62EB800F61642 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F6AD4227E62EB800F61642 /* SignInViewController.swift */; };
+		70F6AD4627E6319F00F61642 /* PillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F6AD4527E6319F00F61642 /* PillViewController.swift */; };
+		70F6AD4927E631D600F61642 /* PillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F6AD4827E631D600F61642 /* PillViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		70F6AD3827E62E5900F61642 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		70F6AD3A27E62E5900F61642 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70F6AD4227E62EB800F61642 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		70F6AD4527E6319F00F61642 /* PillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillViewController.swift; sourceTree = "<group>"; };
+		70F6AD4827E631D600F61642 /* PillViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 		70F6AD2B27E62E5900F61642 /* PillManager */ = {
 			isa = PBXGroup;
 			children = (
+				70F6AD4727E631C200F61642 /* ViewModel */,
 				70F6AD3A27E62E5900F61642 /* Info.plist */,
 				70F6AD4427E62F5900F61642 /* Resources */,
 				70F6AD4127E62EA700F61642 /* ViewController */,
@@ -75,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				70F6AD4227E62EB800F61642 /* SignInViewController.swift */,
+				70F6AD4527E6319F00F61642 /* PillViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -86,6 +92,14 @@
 				70F6AD3527E62E5900F61642 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		70F6AD4727E631C200F61642 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				70F6AD4827E631D600F61642 /* PillViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,9 +172,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70F6AD4927E631D600F61642 /* PillViewModel.swift in Sources */,
 				70F6AD4327E62EB800F61642 /* SignInViewController.swift in Sources */,
 				70F6AD2D27E62E5900F61642 /* AppDelegate.swift in Sources */,
 				70F6AD2F27E62E5900F61642 /* SceneDelegate.swift in Sources */,
+				70F6AD4627E6319F00F61642 /* PillViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

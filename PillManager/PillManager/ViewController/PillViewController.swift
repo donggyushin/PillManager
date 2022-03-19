@@ -1,5 +1,5 @@
 //
-//  SignInViewController.swift
+//  PillViewController.swift
 //  PillManager
 //
 //  Created by 신동규 on 2022/03/20.
@@ -7,18 +7,16 @@
 
 import UIKit
 
-class SignInViewController: UIViewController {
+class PillViewController: UIViewController {
     
-    private lazy var signInButton: UIButton = {
-        let view = UIButton(configuration: .tinted(), primaryAction: .init(handler: { _ in
-            self.showOnlyAppleSignInAvailableAlert()
-        }))
-        view.setTitle("Sign In", for: .normal)
-        return view
-    }()
+    private let viewModel: PillViewModel = .init()
+    
+    private lazy var button: UIButton = .init(configuration: .tinted(), primaryAction: .init(handler: { _ in
+        self.buttonTapped()
+    }))
     
     private lazy var verticalStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [signInButton])
+        let view = UIStackView(arrangedSubviews: [button])
         return view
     }()
     
@@ -32,6 +30,7 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         configUI()
+        bind()
     }
     
     private func configUI() {
@@ -46,18 +45,22 @@ class SignInViewController: UIViewController {
         ])
     }
     
-    private func showOnlyAppleSignInAvailableAlert() {
-        let alert: UIAlertController = .init(title: nil, message: "This application only allow apple sign in. Do you wanna go on?", preferredStyle: .actionSheet)
-        
-        let okay: UIAlertAction = .init(title: "Yes", style: .default) { _ in
-            print("DEBUG: start apple sign in")
-        }
-        
-        let no: UIAlertAction = .init(title: "No", style: .cancel)
-        
-        alert.addAction(okay)
-        alert.addAction(no)
-        
-        present(alert, animated: true)
+    private func bind() {
+        viewModel.$status.sink { [weak self] status in
+            self?.button.isEnabled = false
+            switch status {
+            case .not_yet:
+                self?.button.setTitle("I have the pill", for: .normal)
+                self?.button.isEnabled = true
+            case .have:
+                self?.button.setTitle("Already I have the pill", for: .normal)
+            case .loading:
+                self?.button.setTitle("Please wait...", for: .normal)
+            }
+        }.store(in: &viewModel.cancellables)
+    }
+    
+    private func buttonTapped() {
+        print("DEBUG: Button Tapped")
     }
 }
