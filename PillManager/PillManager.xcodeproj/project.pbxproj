@@ -10,6 +10,8 @@
 		7006461827E636EC00060F52 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7006461727E636EC00060F52 /* GoogleService-Info.plist */; };
 		7006461C27E6384000060F52 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7006461B27E6384000060F52 /* FirebaseAuth */; };
 		7006461E27E6384000060F52 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7006461D27E6384000060F52 /* FirebaseFirestore */; };
+		7006462427E63D0700060F52 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006462327E63D0700060F52 /* SignInViewModel.swift */; };
+		7006462727E6481600060F52 /* PillDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006462627E6481600060F52 /* PillDataCenter.swift */; };
 		70F6AD2D27E62E5900F61642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F6AD2C27E62E5900F61642 /* AppDelegate.swift */; };
 		70F6AD2F27E62E5900F61642 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F6AD2E27E62E5900F61642 /* SceneDelegate.swift */; };
 		70F6AD3627E62E5900F61642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70F6AD3527E62E5900F61642 /* Assets.xcassets */; };
@@ -21,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		7006461727E636EC00060F52 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7006461F27E6399400060F52 /* PillManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PillManager.entitlements; sourceTree = "<group>"; };
+		7006462327E63D0700060F52 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		7006462627E6481600060F52 /* PillDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillDataCenter.swift; sourceTree = "<group>"; };
 		70F6AD2927E62E5900F61642 /* PillManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PillManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70F6AD2C27E62E5900F61642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70F6AD2E27E62E5900F61642 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +50,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7006462527E647D100060F52 /* DataCenter */ = {
+			isa = PBXGroup;
+			children = (
+				7006462627E6481600060F52 /* PillDataCenter.swift */,
+			);
+			path = DataCenter;
+			sourceTree = "<group>";
+		};
 		70F6AD2027E62E5900F61642 = {
 			isa = PBXGroup;
 			children = (
@@ -64,12 +77,14 @@
 		70F6AD2B27E62E5900F61642 /* PillManager */ = {
 			isa = PBXGroup;
 			children = (
+				7006461F27E6399400060F52 /* PillManager.entitlements */,
 				70F6AD3A27E62E5900F61642 /* Info.plist */,
 				7006461727E636EC00060F52 /* GoogleService-Info.plist */,
-				70F6AD4727E631C200F61642 /* ViewModel */,
+				70F6AD4027E62E9E00F61642 /* Config */,
+				7006462527E647D100060F52 /* DataCenter */,
 				70F6AD4427E62F5900F61642 /* Resources */,
 				70F6AD4127E62EA700F61642 /* ViewController */,
-				70F6AD4027E62E9E00F61642 /* Config */,
+				70F6AD4727E631C200F61642 /* ViewModel */,
 			);
 			path = PillManager;
 			sourceTree = "<group>";
@@ -105,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				70F6AD4827E631D600F61642 /* PillViewModel.swift */,
+				7006462327E63D0700060F52 /* SignInViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -187,8 +203,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7006462727E6481600060F52 /* PillDataCenter.swift in Sources */,
 				70F6AD4927E631D600F61642 /* PillViewModel.swift in Sources */,
 				70F6AD4327E62EB800F61642 /* SignInViewController.swift in Sources */,
+				7006462427E63D0700060F52 /* SignInViewModel.swift in Sources */,
 				70F6AD2D27E62E5900F61642 /* AppDelegate.swift in Sources */,
 				70F6AD2F27E62E5900F61642 /* SceneDelegate.swift in Sources */,
 				70F6AD4627E6319F00F61642 /* PillViewController.swift in Sources */,
@@ -330,6 +348,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PillManager/PillManager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X58252UHQT;
@@ -358,6 +377,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PillManager/PillManager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X58252UHQT;
