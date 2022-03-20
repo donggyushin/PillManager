@@ -1,3 +1,8 @@
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/34573243/159144801-3a7dd2c9-7061-42cc-b044-df8e42a5cf66.png" width=400 />
+</div>
+
+
 # PillManager
 Sometimes I forget whether I took daily pills or not. Check If you already have daily pills or not.
 
