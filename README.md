@@ -4,7 +4,7 @@
 
 
 # PillManager
-Sometimes I forget whether I took daily pills or not. Check If you already have daily pills or not.
+Sometimes I forget whether I have took daily pills or not. This application can help you guys like me.
 
 <div>
 <img src="https://user-images.githubusercontent.com/34573243/159133765-5347f3c7-09b6-49d7-a942-6773f800f68c.png" width=200 />
@@ -15,4 +15,9 @@ Sometimes I forget whether I took daily pills or not. Check If you already have 
 
 <br>
 
-It only have 2 screens(SignInViewController, PillViewController). All you have to do is just sign in with your apple id(there is no other options.), then tap the button whenever you complete your daily pills(Vitamins, Nutrients, etc). If your button's status is disabled, then you already have completed your daily pills!
+It only have 2 screens(SignInViewController, PillViewController). All you have to do is just sign in with your apple id(there is no other options.), then tap the button whenever you complete your daily pills(Vitamins, Nutrients, etc). If your button's status is disabled, then you can know you already have completed your daily pills! 
+
+## Usage
+- Tap the button when you have completed daily pills
+- You can know whether you have completed your daily pills or not by seeing the button's states!
+- If you didn't take any pills until 10pm, it will let you know by sending local push notification.
