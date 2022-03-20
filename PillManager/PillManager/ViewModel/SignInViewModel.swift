@@ -67,6 +67,5 @@ extension SignInViewModel: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         self.loading = false
-        self.error = error
     }
 }

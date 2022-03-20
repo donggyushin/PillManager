@@ -16,8 +16,19 @@ class SignInViewController: UIViewController {
         return view
     }()
     
+    private lazy var signInWithEmailButton: UIButton = {
+        let view = UIButton(configuration: .tinted(), primaryAction: .init(handler: { _ in
+            self.navigationController?.pushViewController(SignInWithEmailViewController(), animated: true)
+        }))
+        view.setTitle("Sign in with Email", for: .normal)
+        view.tintColor = .systemGreen
+        return view
+    }()
+    
     private lazy var verticalStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [appleSignInButton])
+        let view = UIStackView(arrangedSubviews: [appleSignInButton, signInWithEmailButton])
+        view.spacing = 12
+        view.axis = .vertical
         return view
     }()
     
@@ -52,6 +63,7 @@ class SignInViewController: UIViewController {
     private func bind() {
         viewModel.$loading.sink { [weak self] loading in
             self?.appleSignInButton.isEnabled = !loading
+            self?.signInWithEmailButton.isEnabled = !loading
         }.store(in: &viewModel.cancellables)
         
         viewModel.$error.compactMap({ $0 }).sink { [weak self] error in
@@ -62,22 +74,7 @@ class SignInViewController: UIViewController {
         }.store(in: &viewModel.cancellables)
     }
     
-    private func showOnlyAppleSignInAvailableAlert() {
-        let alert: UIAlertController = .init(title: nil, message: "This application only allow apple sign in. Do you wanna go on?", preferredStyle: .actionSheet)
-        
-        let okay: UIAlertAction = .init(title: "Yes", style: .default) { _ in
-            self.viewModel.signInButtonTapped()
-        }
-        
-        let no: UIAlertAction = .init(title: "No", style: .cancel)
-        
-        alert.addAction(okay)
-        alert.addAction(no)
-        
-        present(alert, animated: true)
-    }
-    
     @objc private func appleSignInButtonTapped() {
-        self.showOnlyAppleSignInAvailableAlert()
+        self.viewModel.signInButtonTapped()
     }
 }
