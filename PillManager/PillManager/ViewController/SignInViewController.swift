@@ -39,6 +39,7 @@ class SignInViewController: UIViewController {
     }
     
     private func configUI() {
+        view.backgroundColor = .systemBackground
         view.addSubview(verticalStackView)
         
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
