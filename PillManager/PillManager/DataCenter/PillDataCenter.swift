@@ -12,6 +12,8 @@ struct PillDataCenter {
     var fetchPillDate: (_ completion: ((Result<Date?, Error>) -> Void)?) -> Void
     var fetchPillDateLocal: () -> Date?
     private var savePillLocal: (_ date: Date) -> Void
+    
+    static let pillIdentifier = "pill"
 }
 
 extension PillDataCenter {
@@ -50,8 +52,8 @@ extension PillDataCenter {
             }
         }
     } fetchPillDateLocal: {
-        UserDefaults.standard.object(forKey: "pill") as? Date
+        UserDefaults.standard.object(forKey: PillDataCenter.pillIdentifier) as? Date
     } savePillLocal: { date in
-        UserDefaults.standard.set(date, forKey: "pill")
+        UserDefaults.standard.set(date, forKey: PillDataCenter.pillIdentifier)
     }
 }
