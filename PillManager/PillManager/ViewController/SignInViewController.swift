@@ -16,19 +16,8 @@ class SignInViewController: UIViewController {
         return view
     }()
     
-    private lazy var signInWithEmailButton: UIButton = {
-        let view = UIButton(configuration: .tinted(), primaryAction: .init(handler: { _ in
-            self.navigationController?.pushViewController(SignInWithEmailViewController(), animated: true)
-        }))
-        view.setTitle("Sign in with Email", for: .normal)
-        view.tintColor = .systemGreen
-        return view
-    }()
-    
     private lazy var verticalStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [appleSignInButton, signInWithEmailButton])
-        view.spacing = 12
-        view.axis = .vertical
+        let view = UIStackView(arrangedSubviews: [appleSignInButton])
         return view
     }()
     
@@ -63,7 +52,6 @@ class SignInViewController: UIViewController {
     private func bind() {
         viewModel.$loading.sink { [weak self] loading in
             self?.appleSignInButton.isEnabled = !loading
-            self?.signInWithEmailButton.isEnabled = !loading
         }.store(in: &viewModel.cancellables)
         
         viewModel.$error.compactMap({ $0 }).sink { [weak self] error in

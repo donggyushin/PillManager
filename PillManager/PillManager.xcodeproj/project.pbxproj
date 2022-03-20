@@ -14,7 +14,6 @@
 		7006462727E6481600060F52 /* PillDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006462627E6481600060F52 /* PillDataCenter.swift */; };
 		7033179327E64A6D000B99E1 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7033179227E64A6D000B99E1 /* CustomError.swift */; };
 		7033179627E64EE1000B99E1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7033179527E64EE1000B99E1 /* Constants.swift */; };
-		70B8014B27E796AD000CABD1 /* SignInWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8014A27E796AD000CABD1 /* SignInWithEmailViewController.swift */; };
 		70F6AD2D27E62E5900F61642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F6AD2C27E62E5900F61642 /* AppDelegate.swift */; };
 		70F6AD2F27E62E5900F61642 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F6AD2E27E62E5900F61642 /* SceneDelegate.swift */; };
 		70F6AD3627E62E5900F61642 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70F6AD3527E62E5900F61642 /* Assets.xcassets */; };
@@ -31,7 +30,6 @@
 		7006462627E6481600060F52 /* PillDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillDataCenter.swift; sourceTree = "<group>"; };
 		7033179227E64A6D000B99E1 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		7033179527E64EE1000B99E1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		70B8014A27E796AD000CABD1 /* SignInWithEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithEmailViewController.swift; sourceTree = "<group>"; };
 		70F6AD2927E62E5900F61642 /* PillManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PillManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70F6AD2C27E62E5900F61642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70F6AD2E27E62E5900F61642 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 			children = (
 				70F6AD4227E62EB800F61642 /* SignInViewController.swift */,
 				70F6AD4527E6319F00F61642 /* PillViewController.swift */,
-				70B8014A27E796AD000CABD1 /* SignInWithEmailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -231,7 +228,6 @@
 				7006462727E6481600060F52 /* PillDataCenter.swift in Sources */,
 				7033179327E64A6D000B99E1 /* CustomError.swift in Sources */,
 				70F6AD4927E631D600F61642 /* PillViewModel.swift in Sources */,
-				70B8014B27E796AD000CABD1 /* SignInWithEmailViewController.swift in Sources */,
 				70F6AD4327E62EB800F61642 /* SignInViewController.swift in Sources */,
 				7006462427E63D0700060F52 /* SignInViewModel.swift in Sources */,
 				70F6AD2D27E62E5900F61642 /* AppDelegate.swift in Sources */,
