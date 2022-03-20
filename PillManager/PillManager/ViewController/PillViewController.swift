@@ -37,7 +37,9 @@ class PillViewController: UIViewController {
     private func configUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(verticalStackView)
-        
+        navigationItem.rightBarButtonItem = .init(title: nil, image: UIImage(systemName: "gear"), primaryAction: .init(handler: { _ in
+            self.navigationController?.pushViewController(SettingViewController(), animated: true)
+        }), menu: nil)
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
