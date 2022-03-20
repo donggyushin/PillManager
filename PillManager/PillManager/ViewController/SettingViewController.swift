@@ -12,7 +12,7 @@ class SettingViewController: UIViewController {
     
     private lazy var logoutButton: UIButton = {
         let view: UIButton = .init(configuration: .plain(), primaryAction: .init(handler: { _ in
-            try? Auth.auth().signOut()
+            self.signOutButtonTapped()
         }))
         view.setTitle("Sign out", for: .normal)
         view.tintColor = .systemRed
@@ -50,5 +50,17 @@ class SettingViewController: UIViewController {
             verticalStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             verticalStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
         ])
+    }
+    
+    private func signOutButtonTapped() {
+        let alert = UIAlertController(title: nil, message: "Are you sure that you want to sign out?", preferredStyle: .actionSheet)
+        let yes: UIAlertAction = .init(title: "Yes", style: .default) { _ in
+            try? Auth.auth().signOut()
+        }
+        let no: UIAlertAction = .init(title: "No", style: .cancel)
+        
+        alert.addAction(yes)
+        alert.addAction(no)
+        present(alert, animated: true)
     }
 }
