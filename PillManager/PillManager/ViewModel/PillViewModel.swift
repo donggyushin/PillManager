@@ -79,6 +79,7 @@ class PillViewModel {
         let notiContent = UNMutableNotificationContent()
         notiContent.title = "Night"
         notiContent.body = "Forgot daily pills?"
+        notiContent.badge = 1
 //        notiContent.userInfo = ["targetScene": "splash"] // 푸시 받을때 오는 데이터
 
         var dateComponents = DateComponents()
