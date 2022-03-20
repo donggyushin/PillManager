@@ -20,3 +20,5 @@ public var window: UIWindow? {
 }
 
 public var calendar: Calendar = .current
+
+public let notificationCenter = UNUserNotificationCenter.current()
