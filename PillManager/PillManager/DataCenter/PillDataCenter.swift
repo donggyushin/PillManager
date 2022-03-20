@@ -23,14 +23,11 @@ extension PillDataCenter {
             completion?(error)
             return
         }
-        
         let date = Date()
-        
-        PillDataCenter.live.savePillLocal(date)
-        
         db.collection("pills").document(uid).setData([
             "date": Timestamp(date: date)
         ], completion: completion)
+        
     } fetchPillDate: { completion in
         guard let uid = Auth.auth().currentUser?.uid else {
             let error: MyError = .not_authorized
@@ -45,7 +42,9 @@ extension PillDataCenter {
                 completion?(.failure(error))
             } else {
                 if let timestamp = document?.data()?["date"] as? Timestamp {
-                    completion?(.success(timestamp.dateValue()))
+                    let date = timestamp.dateValue()
+                    PillDataCenter.live.savePillLocal(date)
+                    completion?(.success(date))
                 } else {
                     completion?(.success(nil))
                 }
