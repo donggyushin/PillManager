@@ -67,7 +67,7 @@ class SignInViewController: UIViewController {
         let alert: UIAlertController = .init(title: nil, message: "This application only allow apple sign in. Do you wanna go on?", preferredStyle: .actionSheet)
         
         let okay: UIAlertAction = .init(title: "Yes", style: .default) { _ in
-            self.startAppleSignIn()
+            self.viewModel.signInButtonTapped()
         }
         
         let no: UIAlertAction = .init(title: "No", style: .cancel)
@@ -76,14 +76,5 @@ class SignInViewController: UIViewController {
         alert.addAction(no)
         
         present(alert, animated: true)
-    }
-    
-    private func startAppleSignIn() {
-        let request = ASAuthorizationAppleIDProvider().createRequest()
-        let controller = ASAuthorizationController(authorizationRequests: [request])
-        controller.delegate = viewModel
-        controller.presentationContextProvider = viewModel
-        controller.performRequests()
-        viewModel.loading = true
     }
 }

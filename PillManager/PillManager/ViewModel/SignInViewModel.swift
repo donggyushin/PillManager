@@ -23,6 +23,15 @@ class SignInViewModel: NSObject {
         self.viewController = viewController
     }
     
+    func signInButtonTapped() {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self
+        controller.presentationContextProvider = self
+        controller.performRequests()
+        loading = true
+    }
+    
 }
 
 extension SignInViewModel: ASAuthorizationControllerPresentationContextProviding {
