@@ -24,9 +24,11 @@ class PillViewModel {
     var cancellables: Set<AnyCancellable> = .init()
     
     private let pillDataCenter: PillDataCenter
+    private let notificationDataCenter: NotificationDataCenter
     
-    init(pillDataCenter: PillDataCenter) {
+    init(pillDataCenter: PillDataCenter, notificationDataCenter: NotificationDataCenter) {
         self.pillDataCenter = pillDataCenter
+        self.notificationDataCenter = notificationDataCenter
         bind()
         fetchPillDate()
         requestSendNotification()
@@ -38,6 +40,7 @@ class PillViewModel {
             self.pillDataCenter.savePill { [weak self] error in
                 self?.error = error
                 self?.fetchPillDate()
+                self?.removeRecentLocalPushNotification()
             }
         }
     }
@@ -74,6 +77,7 @@ class PillViewModel {
     
     // 알림 전송
     private func requestSendNotification() {
+        removeRecentLocalPushNotification()
         let notiContent = UNMutableNotificationContent()
         notiContent.title = "Night"
         notiContent.body = "Forgot daily pills?"
@@ -85,9 +89,10 @@ class PillViewModel {
         dateComponents.minute = 0
         
         let trigger:UNCalendarNotificationTrigger = .init(dateMatching: dateComponents, repeats: true)
-
+        let notificationIdentifier = UUID().uuidString
+        notificationDataCenter.saveNotificationIdentifier(notificationIdentifier)
         let request = UNNotificationRequest(
-            identifier: UUID().uuidString,
+            identifier: notificationIdentifier,
             content: notiContent,
             trigger: trigger
         )
@@ -104,5 +109,11 @@ class PillViewModel {
             }
         }
 
+    }
+    
+    private func removeRecentLocalPushNotification() {
+        if let notificationIdentifier = self.notificationDataCenter.fetchNotificationIdentifier() {
+            notificationCenter.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
+        }
     }
 }

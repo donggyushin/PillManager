@@ -10,7 +10,7 @@ import FirebaseAuth
 
 class PillViewController: UIViewController {
     
-    private let viewModel: PillViewModel = .init(pillDataCenter: PillDataCenter.live)
+    private let viewModel: PillViewModel = .init(pillDataCenter: PillDataCenter.live, notificationDataCenter: NotificationDataCenter.live)
     
     private lazy var button: UIButton = .init(configuration: .tinted(), primaryAction: .init(handler: { _ in
         self.viewModel.buttonTapped()
