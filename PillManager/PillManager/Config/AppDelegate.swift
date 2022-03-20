@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         requestAuthNotification()
-        notificationCenter.delegate = self 
+        notificationCenter.delegate = self
+        UIApplication.shared.applicationIconBadgeNumber = 0 
         return true
     }
 
