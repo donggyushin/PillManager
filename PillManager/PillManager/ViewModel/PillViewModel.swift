@@ -24,11 +24,9 @@ class PillViewModel {
     var cancellables: Set<AnyCancellable> = .init()
     
     private let pillDataCenter: PillDataCenter
-    private let notificationDataCenter: NotificationDataCenter
     
-    init(pillDataCenter: PillDataCenter, notificationDataCenter: NotificationDataCenter) {
+    init(pillDataCenter: PillDataCenter) {
         self.pillDataCenter = pillDataCenter
-        self.notificationDataCenter = notificationDataCenter
         bind()
         fetchPillDate()
         requestSendNotification()
@@ -90,7 +88,6 @@ class PillViewModel {
         
         let trigger:UNCalendarNotificationTrigger = .init(dateMatching: dateComponents, repeats: true)
         let notificationIdentifier = UUID().uuidString
-        notificationDataCenter.saveNotificationIdentifier(notificationIdentifier)
         let request = UNNotificationRequest(
             identifier: notificationIdentifier,
             content: notiContent,
@@ -108,12 +105,10 @@ class PillViewModel {
                 print("DEBUG: error \(error.localizedDescription)")
             }
         }
-
     }
     
     private func removeRecentLocalPushNotification() {
-        if let notificationIdentifier = self.notificationDataCenter.fetchNotificationIdentifier() {
-            notificationCenter.removePendingNotificationRequests(withIdentifiers: [notificationIdentifier])
-        }
+        notificationCenter.removeAllPendingNotificationRequests()
+        notificationCenter.removeAllDeliveredNotifications()
     }
 }
