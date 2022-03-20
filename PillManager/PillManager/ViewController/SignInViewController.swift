@@ -10,16 +10,14 @@ import AuthenticationServices
 
 class SignInViewController: UIViewController {
     
-    private lazy var signInButton: UIButton = {
-        let view = UIButton(configuration: .tinted(), primaryAction: .init(handler: { _ in
-            self.showOnlyAppleSignInAvailableAlert()
-        }))
-        view.setTitle("Sign In", for: .normal)
+    private lazy var appleSignInButton: ASAuthorizationAppleIDButton = {
+        let view = ASAuthorizationAppleIDButton()
+        view.addTarget(self, action: #selector(appleSignInButtonTapped), for: .touchUpInside)
         return view
     }()
     
     private lazy var verticalStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [signInButton])
+        let view = UIStackView(arrangedSubviews: [appleSignInButton])
         return view
     }()
     
@@ -53,7 +51,7 @@ class SignInViewController: UIViewController {
     
     private func bind() {
         viewModel.$loading.sink { [weak self] loading in
-            self?.signInButton.isEnabled = !loading
+            self?.appleSignInButton.isEnabled = !loading
         }.store(in: &viewModel.cancellables)
         
         viewModel.$error.compactMap({ $0 }).sink { [weak self] error in
@@ -77,5 +75,9 @@ class SignInViewController: UIViewController {
         alert.addAction(no)
         
         present(alert, animated: true)
+    }
+    
+    @objc private func appleSignInButtonTapped() {
+        self.showOnlyAppleSignInAvailableAlert()
     }
 }

@@ -97,11 +97,11 @@
 		70F6AD2B27E62E5900F61642 /* PillManager */ = {
 			isa = PBXGroup;
 			children = (
-				7033179427E64EBD000B99E1 /* Constants */,
 				7006461F27E6399400060F52 /* PillManager.entitlements */,
 				70F6AD3A27E62E5900F61642 /* Info.plist */,
 				7006461727E636EC00060F52 /* GoogleService-Info.plist */,
 				70F6AD4027E62E9E00F61642 /* Config */,
+				7033179427E64EBD000B99E1 /* Constants */,
 				7006462527E647D100060F52 /* DataCenter */,
 				7033179127E64A5B000B99E1 /* Enum */,
 				70F6AD4427E62F5900F61642 /* Resources */,
