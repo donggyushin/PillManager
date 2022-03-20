@@ -38,7 +38,7 @@ class PillViewModel {
             self.pillDataCenter.savePill { [weak self] error in
                 self?.error = error
                 self?.fetchPillDate()
-                self?.removeRecentLocalPushNotification()
+                self?.removeAllLocalPushNotifications()
             }
         }
     }
@@ -75,7 +75,7 @@ class PillViewModel {
     
     // 알림 전송
     private func requestSendNotification() {
-        removeRecentLocalPushNotification()
+        removeAllLocalPushNotifications()
         let notiContent = UNMutableNotificationContent()
         notiContent.title = "Night"
         notiContent.body = "Forgot daily pills?"
@@ -107,7 +107,7 @@ class PillViewModel {
         }
     }
     
-    private func removeRecentLocalPushNotification() {
+    private func removeAllLocalPushNotifications() {
         notificationCenter.removeAllPendingNotificationRequests()
         notificationCenter.removeAllDeliveredNotifications()
     }
