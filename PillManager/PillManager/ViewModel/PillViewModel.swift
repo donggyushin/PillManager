@@ -70,7 +70,7 @@ class PillViewModel {
     }
     
     private func isSameDay(date1: Date, date2: Date) -> Bool {
-        calendar.dateComponents([.day], from: date1, to: date2).day == 0
+        calendar.isDate(date1, inSameDayAs: date2)
     }
     
     // 알림 전송
