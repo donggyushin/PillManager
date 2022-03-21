@@ -17,6 +17,8 @@ class PillViewModel {
         case loading = "Waiting..."
     }
     
+    private static let pillNotificationIdentifier = "pillNotificationIdentifier"
+    
     @Published var status: Status = .loading
     @Published var error: Error?
     @Published private var pillDate: Date?
@@ -32,7 +34,7 @@ class PillViewModel {
         requestSendNotification()
     }
     
-    func buttonTapped() {
+    func pillButtonTapped() {
         if status == .not_yet {
             self.status = .loading
             self.pillDataCenter.savePill { [weak self] error in
@@ -40,6 +42,14 @@ class PillViewModel {
                 self?.fetchPillDate()
                 self?.removeAllLocalPushNotifications()
             }
+        }
+    }
+    
+    func cancelButtonTapped() {
+        self.status = .loading
+        pillDataCenter.deletePill { [weak self] error in
+            self?.error = error
+            self?.fetchPillDate()
         }
     }
     
@@ -88,9 +98,8 @@ class PillViewModel {
         dateComponents.minute = 0
         
         let trigger:UNCalendarNotificationTrigger = .init(dateMatching: dateComponents, repeats: true)
-        let notificationIdentifier = UUID().uuidString
         let request = UNNotificationRequest(
-            identifier: notificationIdentifier,
+            identifier: PillViewModel.pillNotificationIdentifier,
             content: notiContent,
             trigger: trigger
         )
@@ -109,7 +118,7 @@ class PillViewModel {
     }
     
     private func removeAllLocalPushNotifications() {
-        notificationCenter.removeAllPendingNotificationRequests()
-        notificationCenter.removeAllDeliveredNotifications()
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [PillViewModel.pillNotificationIdentifier])
+        notificationCenter.removeDeliveredNotifications(withIdentifiers: [PillViewModel.pillNotificationIdentifier])
     }
 }

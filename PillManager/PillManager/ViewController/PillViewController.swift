@@ -13,12 +13,12 @@ class PillViewController: UIViewController {
     private let viewModel: PillViewModel = .init(pillDataCenter: PillDataCenter.live)
     
     private lazy var pillButton: UIButton = .init(configuration: .tinted(), primaryAction: .init(handler: { _ in
-        self.viewModel.buttonTapped()
+        self.viewModel.pillButtonTapped()
     }))
     
     private lazy var cancelButton: UIButton = {
         let view: UIButton = .init(configuration: .tinted(), primaryAction: .init(handler: { _ in
-            print("DEBUG: cancel button tapped")
+            self.viewModel.cancelButtonTapped()
         }))
         view.setTitle("Cancel", for: .normal)
         view.tintColor = .systemRed
@@ -63,9 +63,13 @@ class PillViewController: UIViewController {
     
     private func bind() {
         viewModel.$status.sink { [weak self] status in
+            
             self?.pillButton.isEnabled = status == .not_yet
-            status == .have ? self?.cancelButton.present() : self?.cancelButton.hide()
             self?.pillButton.setTitle(status.rawValue, for: .normal)
+            
+            self?.cancelButton.isEnabled = status == .have
+            status == .have ? self?.cancelButton.present() : self?.cancelButton.hide()
+            
         }.store(in: &viewModel.cancellables)
         
         viewModel.$error.compactMap({ $0 }).sink { [weak self] error in
