@@ -8,12 +8,15 @@ import FirebaseAuth
 import Firebase
 
 struct PillDataCenter {
+    
+    static let pillIdentifier = "pill"
+    
     var savePill: (_ completion: ((Error?) -> Void)?) -> Void
     var fetchPillDate: (_ completion: ((Result<Date?, Error>) -> Void)?) -> Void
     var fetchPillDateLocal: () -> Date?
-    private var savePillLocal: (_ date: Date) -> Void
+    var deletePill: (_ completion: ((Error?) -> Void)?) -> Void
     
-    static let pillIdentifier = "pill"
+    private var savePillLocal: (_ date: Date?) -> Void
 }
 
 extension PillDataCenter {
@@ -52,6 +55,19 @@ extension PillDataCenter {
         }
     } fetchPillDateLocal: {
         UserDefaults.standard.object(forKey: PillDataCenter.pillIdentifier) as? Date
+    } deletePill: { completion in
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            let error: MyError = .not_authorized
+            completion?(error)
+            return
+        }
+        
+        db.collection("pills").document(uid).delete { error in
+            PillDataCenter.live.savePillLocal(nil)
+            completion?(error)
+        }
+        
     } savePillLocal: { date in
         UserDefaults.standard.set(date, forKey: PillDataCenter.pillIdentifier)
     }
