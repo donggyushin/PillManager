@@ -12,12 +12,24 @@ class PillViewController: UIViewController {
     
     private let viewModel: PillViewModel = .init(pillDataCenter: PillDataCenter.live)
     
-    private lazy var button: UIButton = .init(configuration: .tinted(), primaryAction: .init(handler: { _ in
-        self.viewModel.buttonTapped()
+    private lazy var pillButton: UIButton = .init(configuration: .tinted(), primaryAction: .init(handler: { _ in
+        self.viewModel.pillButtonTapped()
     }))
     
+    private lazy var cancelButton: UIButton = {
+        let view: UIButton = .init(configuration: .tinted(), primaryAction: .init(handler: { _ in
+            self.viewModel.cancelButtonTapped()
+        }))
+        view.setTitle("Cancel", for: .normal)
+        view.tintColor = .systemRed
+        view.alpha = 0
+        return view
+    }()
+    
     private lazy var verticalStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [button])
+        let view = UIStackView(arrangedSubviews: [pillButton, cancelButton])
+        view.axis = .vertical
+        view.spacing = 0 
         return view
     }()
     
@@ -37,7 +49,9 @@ class PillViewController: UIViewController {
     private func configUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(verticalStackView)
-        
+        navigationItem.rightBarButtonItem = .init(title: nil, image: UIImage(systemName: "gear"), primaryAction: .init(handler: { _ in
+            self.navigationController?.pushViewController(SettingViewController(), animated: true)
+        }), menu: nil)
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -49,8 +63,13 @@ class PillViewController: UIViewController {
     
     private func bind() {
         viewModel.$status.sink { [weak self] status in
-            self?.button.isEnabled = status == .not_yet
-            self?.button.setTitle(status.rawValue, for: .normal)
+            
+            self?.pillButton.isEnabled = status == .not_yet
+            self?.pillButton.setTitle(status.rawValue, for: .normal)
+            
+            self?.cancelButton.isEnabled = status == .have
+            status == .have ? self?.cancelButton.present() : self?.cancelButton.hide()
+            
         }.store(in: &viewModel.cancellables)
         
         viewModel.$error.compactMap({ $0 }).sink { [weak self] error in
