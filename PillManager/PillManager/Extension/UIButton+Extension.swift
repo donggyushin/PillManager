@@ -10,11 +10,11 @@ import UIKit
 extension UIButton {
     
     func present() {
-        self.updateAlpha(1, with: 0.3)
+        self.updateAlpha(1, with: 1)
     }
     
     func hide() {
-        self.updateAlpha(0, with: 0.3)
+        self.updateAlpha(0, with: 1)
     }
     
     private func updateAlpha(_ alpha: CGFloat, with duration: TimeInterval) {
