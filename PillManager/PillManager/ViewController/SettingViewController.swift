@@ -10,6 +10,22 @@ import FirebaseAuth
 
 class SettingViewController: UIViewController {
     
+    private lazy var customPillButton: UIButton = {
+        let view: UIButton = .init(configuration: .plain(), primaryAction: .init(handler: { _ in
+            print("DEBUG: Navigate to custom pill controller")
+        }))
+        view.setTitle("Custom pill", for: .normal)
+        return view
+    }()
+    
+    private lazy var notificationButton: UIButton = {
+        let view: UIButton = .init(configuration: .plain(), primaryAction: .init(handler: { _ in
+            print("DEBUG: Navigate to notification controller")
+        }))
+        view.setTitle("Notification", for: .normal)
+        return view
+    }()
+    
     private lazy var logoutButton: UIButton = {
         let view: UIButton = .init(configuration: .plain(), primaryAction: .init(handler: { _ in
             self.signOutButtonTapped()
@@ -20,9 +36,10 @@ class SettingViewController: UIViewController {
     }()
     
     private lazy var verticalStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [logoutButton])
+        let view = UIStackView(arrangedSubviews: [customPillButton, notificationButton, UIView(), logoutButton])
         view.axis = .vertical
         view.alignment = .leading
+        view.spacing = 20
         return view
     }()
     
