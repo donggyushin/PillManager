@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         Auth.auth().addStateDidChangeListener { auth, user in
             let rootViewController = UINavigationController()
-            rootViewController.setViewControllers([user == nil ? SignInViewController() : PillViewController()], animated: false)
+            rootViewController.setViewControllers([user == nil ? PillViewController() : PillViewController()], animated: false)
             self.window?.rootViewController = rootViewController
         }
     }
