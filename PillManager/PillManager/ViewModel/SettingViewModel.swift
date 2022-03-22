@@ -14,14 +14,17 @@ class SettingViewModel {
     var cancellables: Set<AnyCancellable> = .init()
     
     private let notificationDataCenter: NotificationDataCenter
+    private let pillViewModel: PillViewModel
     
-    init(notificationDataCenter: NotificationDataCenter) {
+    init(notificationDataCenter: NotificationDataCenter, pillViewModel: PillViewModel) {
         self.notificationDataCenter = notificationDataCenter
+        self.pillViewModel = pillViewModel
         isNotificationDisabled = notificationDataCenter.fetchIsNotificationDisabled()
     }
     
     func switchTapped() {
         notificationDataCenter.setIsNotificationDisabled(!isNotificationDisabled)
         isNotificationDisabled = notificationDataCenter.fetchIsNotificationDisabled()
+        pillViewModel.requestSendNotification()
     }
 }

@@ -86,7 +86,7 @@ class PillViewModel {
     }
     
     // 알림 전송
-    private func requestSendNotification() {
+    func requestSendNotification() {
         removeAllLocalPushNotifications()
         if notificationDataCenter.fetchIsNotificationDisabled() { return }
         let notiContent = UNMutableNotificationContent()
