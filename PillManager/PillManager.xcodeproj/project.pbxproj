@@ -15,6 +15,8 @@
 		7033179327E64A6D000B99E1 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7033179227E64A6D000B99E1 /* CustomError.swift */; };
 		7033179627E64EE1000B99E1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7033179527E64EE1000B99E1 /* Constants.swift */; };
 		706CB3E127E8C249004A2924 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706CB3E027E8C249004A2924 /* UIButton+Extension.swift */; };
+		7083975327E9FC9D008A1CC7 /* NotificationDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7083975227E9FC9D008A1CC7 /* NotificationDataCenter.swift */; };
+		7083975727EA04F1008A1CC7 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7083975627EA04F1008A1CC7 /* SettingViewModel.swift */; };
 		70B8014D27E79ACB000CABD1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8014C27E79ACB000CABD1 /* SettingViewController.swift */; };
 		70F6AD2D27E62E5900F61642 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F6AD2C27E62E5900F61642 /* AppDelegate.swift */; };
 		70F6AD2F27E62E5900F61642 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F6AD2E27E62E5900F61642 /* SceneDelegate.swift */; };
@@ -33,6 +35,8 @@
 		7033179227E64A6D000B99E1 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		7033179527E64EE1000B99E1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		706CB3E027E8C249004A2924 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		7083975227E9FC9D008A1CC7 /* NotificationDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataCenter.swift; sourceTree = "<group>"; };
+		7083975627EA04F1008A1CC7 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		70B8014C27E79ACB000CABD1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		70F6AD2927E62E5900F61642 /* PillManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PillManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70F6AD2C27E62E5900F61642 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				7006462627E6481600060F52 /* PillDataCenter.swift */,
+				7083975227E9FC9D008A1CC7 /* NotificationDataCenter.swift */,
 			);
 			path = DataCenter;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 			children = (
 				70F6AD4827E631D600F61642 /* PillViewModel.swift */,
 				7006462327E63D0700060F52 /* SignInViewModel.swift */,
+				7083975627EA04F1008A1CC7 /* SettingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -242,8 +248,10 @@
 				7006462727E6481600060F52 /* PillDataCenter.swift in Sources */,
 				7033179327E64A6D000B99E1 /* CustomError.swift in Sources */,
 				70F6AD4927E631D600F61642 /* PillViewModel.swift in Sources */,
+				7083975727EA04F1008A1CC7 /* SettingViewModel.swift in Sources */,
 				706CB3E127E8C249004A2924 /* UIButton+Extension.swift in Sources */,
 				70F6AD4327E62EB800F61642 /* SignInViewController.swift in Sources */,
+				7083975327E9FC9D008A1CC7 /* NotificationDataCenter.swift in Sources */,
 				7006462427E63D0700060F52 /* SignInViewModel.swift in Sources */,
 				70B8014D27E79ACB000CABD1 /* SettingViewController.swift in Sources */,
 				70F6AD2D27E62E5900F61642 /* AppDelegate.swift in Sources */,

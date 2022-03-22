@@ -26,9 +26,11 @@ class PillViewModel {
     var cancellables: Set<AnyCancellable> = .init()
     
     private let pillDataCenter: PillDataCenter
+    private let notificationDataCenter: NotificationDataCenter
     
-    init(pillDataCenter: PillDataCenter) {
+    init(pillDataCenter: PillDataCenter, notificationDataCenter: NotificationDataCenter) {
         self.pillDataCenter = pillDataCenter
+        self.notificationDataCenter = notificationDataCenter
         bind()
         fetchPillDate()
         requestSendNotification()
@@ -86,6 +88,7 @@ class PillViewModel {
     // 알림 전송
     private func requestSendNotification() {
         removeAllLocalPushNotifications()
+        if notificationDataCenter.fetchIsNotificationDisabled() { return }
         let notiContent = UNMutableNotificationContent()
         notiContent.title = "Night"
         notiContent.body = "Forgot daily pills?"

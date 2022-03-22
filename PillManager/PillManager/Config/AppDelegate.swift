@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         requestAuthNotification()
         notificationCenter.delegate = self
-        UIApplication.shared.applicationIconBadgeNumber = 0 
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        removeAllLocalPushNotifications()
         return true
     }
 
@@ -68,5 +69,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         let url = response.notification.request.content.userInfo
         print("DEBUG: url \(url)")
         completionHandler()
+    }
+    
+    private func removeAllLocalPushNotifications() {
+        notificationCenter.removeAllDeliveredNotifications()
+        notificationCenter.removeAllPendingNotificationRequests()
     }
 }
