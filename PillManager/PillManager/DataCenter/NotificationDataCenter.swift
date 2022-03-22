@@ -30,7 +30,7 @@ extension NotificationDataCenter {
         db.collection(NotificationDataCenter.firestoreCollection).document(uid).getDocument { document, error in
             if let error = error {
                 completion?(.failure(error))
-            } else if let isNotificationDisabled = document?.data()["isNotificationDisabled"] as? Bool {
+            } else if let isNotificationDisabled = document?.data()?["isNotificationDisabled"] as? Bool {
                 completion?(.success(isNotificationDisabled))
             }
         }
