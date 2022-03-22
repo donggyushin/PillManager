@@ -88,7 +88,7 @@ class PillViewModel {
     // 알림 전송
     func requestSendNotification() {
         removeAllLocalPushNotifications()
-        if notificationDataCenter.fetchIsNotificationDisabled() { return }
+        if notificationDataCenter.fetchIsNotificationDisabled(nil) { return }
         let notiContent = UNMutableNotificationContent()
         notiContent.title = "Night"
         notiContent.body = "Forgot daily pills?"

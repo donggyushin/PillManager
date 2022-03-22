@@ -10,6 +10,7 @@ import Combine
 class SettingViewModel {
     
     @Published var isNotificationDisabled: Bool
+    @Published var error: Error?
     
     var cancellables: Set<AnyCancellable> = .init()
     
@@ -19,12 +20,29 @@ class SettingViewModel {
     init(notificationDataCenter: NotificationDataCenter, pillViewModel: PillViewModel) {
         self.notificationDataCenter = notificationDataCenter
         self.pillViewModel = pillViewModel
-        isNotificationDisabled = notificationDataCenter.fetchIsNotificationDisabled()
+        isNotificationDisabled = notificationDataCenter.fetchIsNotificationDisabled(nil)
+        _ = notificationDataCenter.fetchIsNotificationDisabled({ [weak self] result in
+            switch result {
+            case .failure(let error):
+                self?.error = error
+            case .success(let isNotificationDisabled):
+                self?.isNotificationDisabled = isNotificationDisabled
+            }
+        })
     }
     
     func switchTapped() {
-        notificationDataCenter.setIsNotificationDisabled(!isNotificationDisabled)
-        isNotificationDisabled = notificationDataCenter.fetchIsNotificationDisabled()
+        notificationDataCenter.setIsNotificationDisabled(!isNotificationDisabled, { [weak self] error in
+            self?.error = error
+        })
+        isNotificationDisabled = notificationDataCenter.fetchIsNotificationDisabled({ [weak self] result in
+            switch result {
+            case .success(let isNotificationDisabled):
+                self?.isNotificationDisabled = isNotificationDisabled
+            case .failure(let error):
+                self?.error = error
+            }
+        })
         pillViewModel.requestSendNotification()
     }
 }
