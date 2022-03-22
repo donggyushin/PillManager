@@ -51,10 +51,12 @@ class SettingViewController: UIViewController {
         return view
     }()
     
-    private let viewModel: SettingViewModel = .init(notificationDataCenter: NotificationDataCenter.live)
+    private let pillViewModel: PillViewModel
+    private lazy var viewModel: SettingViewModel = .init(notificationDataCenter: NotificationDataCenter.live, pillViewModel: pillViewModel)
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    init(pillViewModel: PillViewModel) {
+        self.pillViewModel = pillViewModel
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
