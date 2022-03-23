@@ -44,20 +44,20 @@ class PillViewModel {
     func pillButtonTapped() {
         if status == .not_yet {
             self.status = .loading
-            self.pillDataCenter.savePill { [weak self] error in
+            self.pillDataCenter.savePill(historyDataCenter, { [weak self] error in
                 self?.error = error
                 self?.fetchPillDate()
                 self?.removeAllLocalPushNotifications()
-            }
+            })
         }
     }
     
     func cancelButtonTapped() {
         self.status = .loading
-        pillDataCenter.deletePill { [weak self] error in
+        pillDataCenter.deletePill(historyDataCenter, { [weak self] error in
             self?.error = error
             self?.fetchPillDate()
-        }
+        })
     }
     
     // 알림 전송
@@ -137,7 +137,7 @@ class PillViewModel {
     private func fetchYesterdayHistory() {
         dateComponent.day = -1
         guard let yesterday = calendar.date(byAdding: dateComponent, to: Date()) else { return }
-        historyDataCenter.fetchDefaultTodayHistory(yesterday, { [weak self] result in
+        historyDataCenter.fetchDefaultHistory(yesterday, { [weak self] result in
             self?.isPillTakenYesterday = result
         })
     }
