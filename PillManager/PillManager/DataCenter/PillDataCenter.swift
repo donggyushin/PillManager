@@ -32,7 +32,7 @@ extension PillDataCenter {
             "date": Timestamp(date: date)
         ], completion: completion)
         
-        HistoryDataCenter.live.saveDefaultTodayHistory(Date(), nil)
+        HistoryDataCenter.live.saveDefaultHistory(Date(), nil)
         
     } fetchPillDate: { completion in
         guard let uid = Auth.auth().currentUser?.uid else {

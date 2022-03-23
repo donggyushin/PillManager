@@ -13,8 +13,8 @@ struct HistoryDataCenter {
     
     static let firestoreCollection = "histories"
     
-    var saveDefaultTodayHistory: (_ date: Date, _ completion: ((Error?) -> Void)?) -> Void
-    var fetchDefaultTodayHistory: (_ date: Date, _ completion: ((Bool) -> Void)?) -> Void
+    var saveDefaultHistory: (_ date: Date, _ completion: ((Error?) -> Void)?) -> Void
+    var fetchDefaultHistory: (_ date: Date, _ completion: ((Bool) -> Void)?) -> Void
 }
 
 extension HistoryDataCenter {
@@ -34,7 +34,7 @@ extension HistoryDataCenter {
             .setData([
                 "date": Timestamp(date: date)
             ], completion: completion)
-    } fetchDefaultTodayHistory: { date, completion in
+    } fetchDefaultHistory: { date, completion in
         
         guard let uid = Auth.auth().currentUser?.uid else {
             completion?(false)

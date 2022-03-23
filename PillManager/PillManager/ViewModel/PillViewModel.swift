@@ -137,7 +137,7 @@ class PillViewModel {
     private func fetchYesterdayHistory() {
         dateComponent.day = -1
         guard let yesterday = calendar.date(byAdding: dateComponent, to: Date()) else { return }
-        historyDataCenter.fetchDefaultTodayHistory(yesterday, { [weak self] result in
+        historyDataCenter.fetchDefaultHistory(yesterday, { [weak self] result in
             self?.isPillTakenYesterday = result
         })
     }
