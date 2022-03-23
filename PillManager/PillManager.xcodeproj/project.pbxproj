@@ -14,7 +14,10 @@
 		7006462727E6481600060F52 /* PillDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006462627E6481600060F52 /* PillDataCenter.swift */; };
 		7033179327E64A6D000B99E1 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7033179227E64A6D000B99E1 /* CustomError.swift */; };
 		7033179627E64EE1000B99E1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7033179527E64EE1000B99E1 /* Constants.swift */; };
-		706CB3E127E8C249004A2924 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706CB3E027E8C249004A2924 /* UIButton+Extension.swift */; };
+		7063312227EB5A5700225AEA /* HistoryDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7063312127EB5A5700225AEA /* HistoryDataCenter.swift */; };
+		7063312427EB5C5900225AEA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7063312327EB5C5900225AEA /* Date+Extension.swift */; };
+		7063312727EB5F9100225AEA /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7063312627EB5F9100225AEA /* DotView.swift */; };
+		706CB3E127E8C249004A2924 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706CB3E027E8C249004A2924 /* UIView+Extension.swift */; };
 		7083975327E9FC9D008A1CC7 /* NotificationDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7083975227E9FC9D008A1CC7 /* NotificationDataCenter.swift */; };
 		7083975727EA04F1008A1CC7 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7083975627EA04F1008A1CC7 /* SettingViewModel.swift */; };
 		70B8014D27E79ACB000CABD1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8014C27E79ACB000CABD1 /* SettingViewController.swift */; };
@@ -34,7 +37,10 @@
 		7006462627E6481600060F52 /* PillDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillDataCenter.swift; sourceTree = "<group>"; };
 		7033179227E64A6D000B99E1 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		7033179527E64EE1000B99E1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		706CB3E027E8C249004A2924 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		7063312127EB5A5700225AEA /* HistoryDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDataCenter.swift; sourceTree = "<group>"; };
+		7063312327EB5C5900225AEA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		7063312627EB5F9100225AEA /* DotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
+		706CB3E027E8C249004A2924 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		7083975227E9FC9D008A1CC7 /* NotificationDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataCenter.swift; sourceTree = "<group>"; };
 		7083975627EA04F1008A1CC7 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		70B8014C27E79ACB000CABD1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +73,7 @@
 			children = (
 				7006462627E6481600060F52 /* PillDataCenter.swift */,
 				7083975227E9FC9D008A1CC7 /* NotificationDataCenter.swift */,
+				7063312127EB5A5700225AEA /* HistoryDataCenter.swift */,
 			);
 			path = DataCenter;
 			sourceTree = "<group>";
@@ -87,10 +94,19 @@
 			path = Constant;
 			sourceTree = "<group>";
 		};
+		7063312527EB5F7500225AEA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7063312627EB5F9100225AEA /* DotView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		706CB3DF27E8C22B004A2924 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				706CB3E027E8C249004A2924 /* UIButton+Extension.swift */,
+				706CB3E027E8C249004A2924 /* UIView+Extension.swift */,
+				7063312327EB5C5900225AEA /* Date+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -123,6 +139,7 @@
 				7033179127E64A5B000B99E1 /* Enum */,
 				706CB3DF27E8C22B004A2924 /* Extension */,
 				70F6AD4427E62F5900F61642 /* Resource */,
+				7063312527EB5F7500225AEA /* View */,
 				70F6AD4127E62EA700F61642 /* ViewController */,
 				70F6AD4727E631C200F61642 /* ViewModel */,
 			);
@@ -248,11 +265,14 @@
 				7006462727E6481600060F52 /* PillDataCenter.swift in Sources */,
 				7033179327E64A6D000B99E1 /* CustomError.swift in Sources */,
 				70F6AD4927E631D600F61642 /* PillViewModel.swift in Sources */,
+				7063312227EB5A5700225AEA /* HistoryDataCenter.swift in Sources */,
 				7083975727EA04F1008A1CC7 /* SettingViewModel.swift in Sources */,
-				706CB3E127E8C249004A2924 /* UIButton+Extension.swift in Sources */,
+				7063312427EB5C5900225AEA /* Date+Extension.swift in Sources */,
+				706CB3E127E8C249004A2924 /* UIView+Extension.swift in Sources */,
 				70F6AD4327E62EB800F61642 /* SignInViewController.swift in Sources */,
 				7083975327E9FC9D008A1CC7 /* NotificationDataCenter.swift in Sources */,
 				7006462427E63D0700060F52 /* SignInViewModel.swift in Sources */,
+				7063312727EB5F9100225AEA /* DotView.swift in Sources */,
 				70B8014D27E79ACB000CABD1 /* SettingViewController.swift in Sources */,
 				70F6AD2D27E62E5900F61642 /* AppDelegate.swift in Sources */,
 				70F6AD2F27E62E5900F61642 /* SceneDelegate.swift in Sources */,
@@ -405,8 +425,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -434,8 +454,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

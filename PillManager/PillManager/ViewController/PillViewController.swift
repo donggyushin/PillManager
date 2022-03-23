@@ -10,7 +10,13 @@ import FirebaseAuth
 
 class PillViewController: UIViewController {
     
-    private let viewModel: PillViewModel = .init(pillDataCenter: PillDataCenter.live, notificationDataCenter: NotificationDataCenter.live)
+    private let viewModel: PillViewModel = .init(pillDataCenter: PillDataCenter.live, notificationDataCenter: NotificationDataCenter.live, historyDataCenter: HistoryDataCenter.live)
+    
+    private let blueDotView: DotView = {
+        let view = DotView()
+        view.alpha = 0 
+        return view
+    }()
     
     private lazy var pillButton: UIButton = .init(configuration: .tinted(), primaryAction: .init(handler: { _ in
         self.viewModel.pillButtonTapped()
@@ -49,9 +55,13 @@ class PillViewController: UIViewController {
     private func configUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(verticalStackView)
+        
         navigationItem.rightBarButtonItem = .init(title: nil, image: UIImage(systemName: "gear"), primaryAction: .init(handler: { _ in
             self.navigationController?.pushViewController(SettingViewController(pillViewModel: self.viewModel), animated: true)
         }), menu: nil)
+        
+        navigationItem.leftBarButtonItem = .init(customView: blueDotView)
+        
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -79,6 +89,10 @@ class PillViewController: UIViewController {
             }
             alert.addAction(yes)
             self?.present(alert, animated: true)
+        }.store(in: &viewModel.cancellables)
+        
+        viewModel.$isBlueDotViewVisible.sink { [weak self] visible in
+            visible ? self?.blueDotView.present() : self?.blueDotView.hide()
         }.store(in: &viewModel.cancellables)
     }
 }

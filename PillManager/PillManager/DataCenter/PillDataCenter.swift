@@ -10,6 +10,7 @@ import Firebase
 struct PillDataCenter {
     
     static let pillIdentifier = "pill"
+    static let firestoreCollection = "pills"
     
     var savePill: (_ completion: ((Error?) -> Void)?) -> Void
     var fetchPillDate: (_ completion: ((Result<Date?, Error>) -> Void)?) -> Void
@@ -27,9 +28,11 @@ extension PillDataCenter {
             return
         }
         let date = Date()
-        db.collection("pills").document(uid).setData([
+        db.collection(PillDataCenter.firestoreCollection).document(uid).setData([
             "date": Timestamp(date: date)
         ], completion: completion)
+        
+        HistoryDataCenter.live.saveDefaultTodayHistory(Date(), nil)
         
     } fetchPillDate: { completion in
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -39,8 +42,7 @@ extension PillDataCenter {
         }
         
         completion?(.success(PillDataCenter.live.fetchPillDateLocal()))
-
-        db.collection("pills").document(uid).getDocument { document, error in
+        db.collection(PillDataCenter.firestoreCollection).document(uid).getDocument { document, error in
             if let error = error {
                 completion?(.failure(error))
             } else {
@@ -63,7 +65,7 @@ extension PillDataCenter {
             return
         }
         
-        db.collection("pills").document(uid).delete { error in
+        db.collection(PillDataCenter.firestoreCollection).document(uid).delete { error in
             PillDataCenter.live.savePillLocal(nil)
             completion?(error)
         }
