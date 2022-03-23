@@ -15,6 +15,7 @@ struct HistoryDataCenter {
     
     var saveDefaultHistory: (_ date: Date, _ completion: ((Error?) -> Void)?) -> Void
     var fetchDefaultHistory: (_ date: Date, _ completion: ((Bool) -> Void)?) -> Void
+    var removeDefaultHistory: (_ date: Date, _ completion: ((Error?) -> Void)?) -> Void
 }
 
 extension HistoryDataCenter {
@@ -51,5 +52,20 @@ extension HistoryDataCenter {
                 if error != nil {completion?(false)}
                 else {completion?(document?.data() != nil)}
             }
+    } removeDefaultHistory: { date, completion in
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            let error: MyError = .not_authorized
+            completion?(error)
+            return
+        }
+        
+        let dateString = "\(date.get(.year))-\(date.get(.month))-\(date.get(.day))"
+        
+        db.collection(HistoryDataCenter.firestoreCollection)
+            .document(uid)
+            .collection("defaults")
+            .document(dateString)
+            .delete(completion: completion)
     }
 }
