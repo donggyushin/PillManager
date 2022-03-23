@@ -13,25 +13,43 @@ struct HistoryDataCenter {
     
     static let firestoreCollection = "histories"
     
-    var saveDefaultTodayHistory: (_ completion: ((Error?) -> Void)?) -> Void
+    var saveDefaultTodayHistory: (_ date: Date, _ completion: ((Error?) -> Void)?) -> Void
+    var fetchDefaultTodayHistory: (_ date: Date, _ completion: ((Bool) -> Void)?) -> Void
 }
 
 extension HistoryDataCenter {
-    static let live: HistoryDataCenter = .init { completion in
+    static let live: HistoryDataCenter = .init { date, completion in
         
         guard let uid = Auth.auth().currentUser?.uid else {
             completion?(nil)
             return
         }
         
-        let now = Date()
+        let dateString = "\(date.get(.year))-\(date.get(.month))-\(date.get(.year))"
         
         db.collection(HistoryDataCenter.firestoreCollection)
             .document(uid)
             .collection("defaults")
-            .document("\(now.get(.year))-\(now.get(.month))-\(now.get(.year))")
+            .document(dateString)
             .setData([
-                "date": Timestamp(date: now)
+                "date": Timestamp(date: date)
             ], completion: completion)
+    } fetchDefaultTodayHistory: { date, completion in
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            completion?(false)
+            return
+        }
+        
+        let dateString = "\(date.get(.year))-\(date.get(.month))-\(date.get(.year))"
+        
+        db.collection(HistoryDataCenter.firestoreCollection)
+            .document(uid)
+            .collection("defaults")
+            .document(dateString)
+            .getDocument { document, error in
+                if error != nil {completion?(false)}
+                else {completion?(document?.data() != nil)}
+            }
     }
 }
