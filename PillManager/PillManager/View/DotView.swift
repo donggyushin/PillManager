@@ -11,7 +11,7 @@ class DotView: UIView {
     
     private let size: CGFloat, color: UIColor
     
-    init(size: CGFloat = 18, color: UIColor = .systemBlue) {
+    init(size: CGFloat = 8, color: UIColor = .systemBlue) {
         self.size = size
         self.color = color
         super.init(frame: .zero)

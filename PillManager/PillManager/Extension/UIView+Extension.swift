@@ -1,5 +1,5 @@
 //
-//  UIButton+Extension.swift
+//  UIView+Extension.swift
 //  PillManager
 //
 //  Created by 신동규 on 2022/03/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIButton {
+extension UIView {
     
     func present() {
         self.updateAlpha(1, with: 1)

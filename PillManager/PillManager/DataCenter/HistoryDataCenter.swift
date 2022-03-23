@@ -25,7 +25,7 @@ extension HistoryDataCenter {
             return
         }
         
-        let dateString = "\(date.get(.year))-\(date.get(.month))-\(date.get(.year))"
+        let dateString = "\(date.get(.year))-\(date.get(.month))-\(date.get(.day))"
         
         db.collection(HistoryDataCenter.firestoreCollection)
             .document(uid)
@@ -41,7 +41,7 @@ extension HistoryDataCenter {
             return
         }
         
-        let dateString = "\(date.get(.year))-\(date.get(.month))-\(date.get(.year))"
+        let dateString = "\(date.get(.year))-\(date.get(.month))-\(date.get(.day))"
         
         db.collection(HistoryDataCenter.firestoreCollection)
             .document(uid)

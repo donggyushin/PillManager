@@ -21,19 +21,24 @@ class PillViewModel {
     
     @Published var status: Status = .loading
     @Published var error: Error?
+    @Published var isBlueDotViewVisible: Bool = false
+    @Published private var isPillTakenYesterday: Bool = false
     @Published private var pillDate: Date?
     
     var cancellables: Set<AnyCancellable> = .init()
     
     private let pillDataCenter: PillDataCenter
     private let notificationDataCenter: NotificationDataCenter
+    private let historyDataCenter: HistoryDataCenter
     
-    init(pillDataCenter: PillDataCenter, notificationDataCenter: NotificationDataCenter) {
+    init(pillDataCenter: PillDataCenter, notificationDataCenter: NotificationDataCenter, historyDataCenter: HistoryDataCenter) {
         self.pillDataCenter = pillDataCenter
         self.notificationDataCenter = notificationDataCenter
+        self.historyDataCenter = historyDataCenter
         bind()
         fetchPillDate()
         requestSendNotification()
+        fetchYesterdayHistory()
     }
     
     func pillButtonTapped() {
@@ -53,36 +58,6 @@ class PillViewModel {
             self?.error = error
             self?.fetchPillDate()
         }
-    }
-    
-    private func bind() {
-        $pillDate.sink { [weak self] date in
-            guard let date = date else {
-                self?.status = .not_yet
-                return
-            }
-            
-            let now = Date()
-            
-            self?.status = (self?.isSameDay(date1: date, date2: now) ?? false) ? .have : .not_yet
-            
-        }.store(in: &cancellables)
-    }
-    
-    private func fetchPillDate() {
-        status = .loading
-        pillDataCenter.fetchPillDate { [weak self] result in
-            switch result {
-            case .success(let date):
-                self?.pillDate = date
-            case .failure(let error):
-                self?.error = error
-            }
-        }
-    }
-    
-    private func isSameDay(date1: Date, date2: Date) -> Bool {
-        calendar.isDate(date1, inSameDayAs: date2)
     }
     
     // 알림 전송
@@ -123,5 +98,47 @@ class PillViewModel {
     private func removeAllLocalPushNotifications() {
         notificationCenter.removePendingNotificationRequests(withIdentifiers: [PillViewModel.pillNotificationIdentifier])
         notificationCenter.removeDeliveredNotifications(withIdentifiers: [PillViewModel.pillNotificationIdentifier])
+    }
+    
+    private func bind() {
+        $pillDate.sink { [weak self] date in
+            guard let date = date else {
+                self?.status = .not_yet
+                return
+            }
+            
+            let now = Date()
+            
+            self?.status = (self?.isSameDay(date1: date, date2: now) ?? false) ? .have : .not_yet
+            
+        }.store(in: &cancellables)
+        
+        $isPillTakenYesterday.sink { [weak self] result in
+            self?.isBlueDotViewVisible = result
+        }.store(in: &cancellables)
+    }
+    
+    private func fetchPillDate() {
+        status = .loading
+        pillDataCenter.fetchPillDate { [weak self] result in
+            switch result {
+            case .success(let date):
+                self?.pillDate = date
+            case .failure(let error):
+                self?.error = error
+            }
+        }
+    }
+    
+    private func isSameDay(date1: Date, date2: Date) -> Bool {
+        calendar.isDate(date1, inSameDayAs: date2)
+    }
+    
+    private func fetchYesterdayHistory() {
+        dateComponent.day = -1
+        guard let yesterday = calendar.date(byAdding: dateComponent, to: Date()) else { return }
+        historyDataCenter.fetchDefaultTodayHistory(yesterday, { [weak self] result in
+            self?.isPillTakenYesterday = result
+        })
     }
 }
