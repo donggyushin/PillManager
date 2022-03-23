@@ -14,6 +14,8 @@
 		7006462727E6481600060F52 /* PillDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006462627E6481600060F52 /* PillDataCenter.swift */; };
 		7033179327E64A6D000B99E1 /* CustomError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7033179227E64A6D000B99E1 /* CustomError.swift */; };
 		7033179627E64EE1000B99E1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7033179527E64EE1000B99E1 /* Constants.swift */; };
+		7063312227EB5A5700225AEA /* HistoryDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7063312127EB5A5700225AEA /* HistoryDataCenter.swift */; };
+		7063312427EB5C5900225AEA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7063312327EB5C5900225AEA /* Date+Extension.swift */; };
 		706CB3E127E8C249004A2924 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706CB3E027E8C249004A2924 /* UIButton+Extension.swift */; };
 		7083975327E9FC9D008A1CC7 /* NotificationDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7083975227E9FC9D008A1CC7 /* NotificationDataCenter.swift */; };
 		7083975727EA04F1008A1CC7 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7083975627EA04F1008A1CC7 /* SettingViewModel.swift */; };
@@ -34,6 +36,8 @@
 		7006462627E6481600060F52 /* PillDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillDataCenter.swift; sourceTree = "<group>"; };
 		7033179227E64A6D000B99E1 /* CustomError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomError.swift; sourceTree = "<group>"; };
 		7033179527E64EE1000B99E1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7063312127EB5A5700225AEA /* HistoryDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDataCenter.swift; sourceTree = "<group>"; };
+		7063312327EB5C5900225AEA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		706CB3E027E8C249004A2924 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		7083975227E9FC9D008A1CC7 /* NotificationDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataCenter.swift; sourceTree = "<group>"; };
 		7083975627EA04F1008A1CC7 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
@@ -67,6 +71,7 @@
 			children = (
 				7006462627E6481600060F52 /* PillDataCenter.swift */,
 				7083975227E9FC9D008A1CC7 /* NotificationDataCenter.swift */,
+				7063312127EB5A5700225AEA /* HistoryDataCenter.swift */,
 			);
 			path = DataCenter;
 			sourceTree = "<group>";
@@ -91,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				706CB3E027E8C249004A2924 /* UIButton+Extension.swift */,
+				7063312327EB5C5900225AEA /* Date+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -248,7 +254,9 @@
 				7006462727E6481600060F52 /* PillDataCenter.swift in Sources */,
 				7033179327E64A6D000B99E1 /* CustomError.swift in Sources */,
 				70F6AD4927E631D600F61642 /* PillViewModel.swift in Sources */,
+				7063312227EB5A5700225AEA /* HistoryDataCenter.swift in Sources */,
 				7083975727EA04F1008A1CC7 /* SettingViewModel.swift in Sources */,
+				7063312427EB5C5900225AEA /* Date+Extension.swift in Sources */,
 				706CB3E127E8C249004A2924 /* UIButton+Extension.swift in Sources */,
 				70F6AD4327E62EB800F61642 /* SignInViewController.swift in Sources */,
 				7083975327E9FC9D008A1CC7 /* NotificationDataCenter.swift in Sources */,
