@@ -25,7 +25,8 @@ class CustomPillSettingViewModel {
     }
     
     public func buttonTapped(with pill: CustomPill) {
-        print("DEBUG: button tapped with \(pill)")
+        pill.isTakenToday ? customPillDataCenter.deletePill(pill, nil) : customPillDataCenter.savePill(pill, nil)
+        fetchPills()
     }
     
     private func bind() {
