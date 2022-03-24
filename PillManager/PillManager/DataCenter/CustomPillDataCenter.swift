@@ -86,22 +86,23 @@ extension CustomPillDataCenter {
         
         var customPill1: CustomPill = .init(data: [:])
         customPill1.id = "1"
-        customPill1.title = "아침"
-        customPill1.description = "피부, 락토핏"
+        customPill1.title = "Morning"
+        customPill1.description = "Skin, LACTO-FIT"
         customPill1.time.minute = 30
         customPill1.time.hour = 8
         
         var customPill2: CustomPill = .init(data: [:])
         customPill2.id = "2"
-        customPill2.title = "점심"
-        customPill2.description = "비타민 C"
+        customPill2.title = "Lunch"
+        customPill2.description = "LEMONA-Max"
         customPill2.time.minute = 30
         customPill2.time.hour = 13
+        customPill2.isTakenToday = true 
         
         var customPill3: CustomPill = .init(data: [:])
         customPill3.id = "3"
-        customPill3.title = "저녁"
-        customPill3.description = "피부"
+        customPill3.title = "Evening"
+        customPill3.description = "Skin, Hair"
         customPill3.time.minute = 00
         customPill3.time.hour = 22
         

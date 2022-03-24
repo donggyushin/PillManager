@@ -12,6 +12,8 @@ struct CustomPill: Codable {
     var title: String
     var description: String?
     var time: Time
+    var isTakenToday = false
+    var isTakenYesterday = false 
     
     init(data: [String: Any]) {
         id = data["id"] as? String ?? ""

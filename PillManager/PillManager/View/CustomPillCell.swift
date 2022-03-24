@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol CustomPillCellDelegate: AnyObject {
+    func customPillCell(cell: CustomPillCell, tapped pill: CustomPill)
+}
+
 class CustomPillCell: UITableViewCell {
+    
+    weak var delegate: CustomPillCellDelegate?
     
     static let identifier = "CustomPillCellIdentifier"
     var pill: CustomPill? {
@@ -31,7 +37,8 @@ class CustomPillCell: UITableViewCell {
     
     private lazy var button: UIButton = {
         let view: UIButton = .init(configuration: UIKit.UIButton.Configuration.tinted(), primaryAction: UIAction(handler: { _ in
-            print("DEBUG: button tapped")
+            guard let pill = self.pill else { return }
+            self.delegate?.customPillCell(cell: self, tapped: pill)
         }))
         view.setImage(UIImage(systemName: "pills"), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -78,5 +85,8 @@ class CustomPillCell: UITableViewCell {
     private func configUI(pill: CustomPill) {
         titleLabel.text = pill.title
         descriptionLabel.text = pill.description
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 1, delay: 0) {
+            self.button.tintColor = pill.isTakenToday ? .systemRed : .systemBlue
+        }.startAnimation()
     }
 }

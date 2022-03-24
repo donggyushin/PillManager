@@ -18,6 +18,7 @@ class CustomPillSettingViewController: UIViewController {
         view.register(CustomPillCell.self, forCellReuseIdentifier: CustomPillCell.identifier)
         view.backgroundColor = .systemBackground
         view.separatorStyle = .none
+        view.delaysContentTouches = false 
         return view
     }()
     
@@ -61,8 +62,13 @@ extension CustomPillSettingViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomPillCell.identifier) as? CustomPillCell ?? CustomPillCell()
         cell.pill = viewModel.pills[indexPath.row]
         cell.selectionStyle = .none
+        cell.delegate = self
         return cell
     }
-    
-    
+}
+
+extension CustomPillSettingViewController: CustomPillCellDelegate {
+    func customPillCell(cell: CustomPillCell, tapped pill: CustomPill) {
+        viewModel.buttonTapped(with: pill)
+    }
 }

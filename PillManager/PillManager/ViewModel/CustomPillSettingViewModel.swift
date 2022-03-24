@@ -24,6 +24,10 @@ class CustomPillSettingViewModel {
         fetchPills()
     }
     
+    public func buttonTapped(with pill: CustomPill) {
+        print("DEBUG: button tapped with \(pill)")
+    }
+    
     private func bind() {
         
     }
