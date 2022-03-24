@@ -101,7 +101,7 @@ extension CustomPillDataCenter {
         var customPill3: CustomPill = .init(data: [:])
         customPill3.id = "3"
         customPill3.title = "저녁"
-        customPill3.description = "피부, 머리"
+        customPill3.description = "피부"
         customPill3.time.minute = 00
         customPill3.time.hour = 22
         
