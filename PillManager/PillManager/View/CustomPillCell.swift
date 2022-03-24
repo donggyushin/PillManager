@@ -85,8 +85,6 @@ class CustomPillCell: UITableViewCell {
     private func configUI(pill: CustomPill) {
         titleLabel.text = pill.title
         descriptionLabel.text = pill.description
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 1, delay: 0) {
-            self.button.tintColor = pill.isTakenToday ? .systemRed : .systemBlue
-        }.startAnimation()
+        button.tintColor = pill.isTakenToday ? .systemRed : .systemBlue
     }
 }
