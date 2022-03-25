@@ -36,7 +36,7 @@ class CustomPillCell: UITableViewCell {
     }()
     
     private lazy var button: UIButton = {
-        let view: UIButton = .init(configuration: UIKit.UIButton.Configuration.tinted(), primaryAction: UIAction(handler: { _ in
+        let view: UIButton = .init(configuration: UIKit.UIButton.Configuration.plain(), primaryAction: UIAction(handler: { _ in
             guard let pill = self.pill else { return }
             self.delegate?.customPillCell(cell: self, tapped: pill)
         }))
