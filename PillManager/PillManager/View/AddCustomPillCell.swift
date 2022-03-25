@@ -35,7 +35,7 @@ class AddCustomPillCell: UITableViewCell {
     }
     
     private func configUI() {
-        
+        backgroundColor = .systemBackground
         contentView.addSubview(button)
         
         button.translatesAutoresizingMaskIntoConstraints = false

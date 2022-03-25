@@ -18,6 +18,10 @@
 		7063312427EB5C5900225AEA /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7063312327EB5C5900225AEA /* Date+Extension.swift */; };
 		7063312727EB5F9100225AEA /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7063312627EB5F9100225AEA /* DotView.swift */; };
 		706CB3E127E8C249004A2924 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706CB3E027E8C249004A2924 /* UIView+Extension.swift */; };
+		707545DD27EE19FF003D8962 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707545DC27EE19FF003D8962 /* TextField.swift */; };
+		707545DF27EE1CB1003D8962 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707545DE27EE1CB1003D8962 /* TextView.swift */; };
+		707545E227EE22D4003D8962 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 707545E127EE22D4003D8962 /* RxCocoa */; };
+		707545E427EE2307003D8962 /* AddCustomPillViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707545E327EE2307003D8962 /* AddCustomPillViewModel.swift */; };
 		7083975327E9FC9D008A1CC7 /* NotificationDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7083975227E9FC9D008A1CC7 /* NotificationDataCenter.swift */; };
 		7083975727EA04F1008A1CC7 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7083975627EA04F1008A1CC7 /* SettingViewModel.swift */; };
 		7094337927EDF67000C5EBE9 /* AddCustomPillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7094337827EDF67000C5EBE9 /* AddCustomPillCell.swift */; };
@@ -49,6 +53,9 @@
 		7063312327EB5C5900225AEA /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		7063312627EB5F9100225AEA /* DotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		706CB3E027E8C249004A2924 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		707545DC27EE19FF003D8962 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		707545DE27EE1CB1003D8962 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		707545E327EE2307003D8962 /* AddCustomPillViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomPillViewModel.swift; sourceTree = "<group>"; };
 		7083975227E9FC9D008A1CC7 /* NotificationDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataCenter.swift; sourceTree = "<group>"; };
 		7083975627EA04F1008A1CC7 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		7094337827EDF67000C5EBE9 /* AddCustomPillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomPillCell.swift; sourceTree = "<group>"; };
@@ -76,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				707545E227EE22D4003D8962 /* RxCocoa in Frameworks */,
 				7006461C27E6384000060F52 /* FirebaseAuth in Frameworks */,
 				7006461E27E6384000060F52 /* FirebaseFirestore in Frameworks */,
 			);
@@ -117,6 +125,8 @@
 				7063312627EB5F9100225AEA /* DotView.swift */,
 				70A3239427ECAEFB006F1086 /* CustomPillCell.swift */,
 				7094337827EDF67000C5EBE9 /* AddCustomPillCell.swift */,
+				707545DC27EE19FF003D8962 /* TextField.swift */,
+				707545DE27EE1CB1003D8962 /* TextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -212,6 +222,7 @@
 				7006462327E63D0700060F52 /* SignInViewModel.swift */,
 				7083975627EA04F1008A1CC7 /* SettingViewModel.swift */,
 				70A3239027ECAD74006F1086 /* CustomPillSettingViewModel.swift */,
+				707545E327EE2307003D8962 /* AddCustomPillViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -235,6 +246,7 @@
 			packageProductDependencies = (
 				7006461B27E6384000060F52 /* FirebaseAuth */,
 				7006461D27E6384000060F52 /* FirebaseFirestore */,
+				707545E127EE22D4003D8962 /* RxCocoa */,
 			);
 			productName = PillManager;
 			productReference = 70F6AD2927E62E5900F61642 /* PillManager.app */;
@@ -266,6 +278,7 @@
 			mainGroup = 70F6AD2027E62E5900F61642;
 			packageReferences = (
 				7006461A27E6384000060F52 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				707545E027EE22D3003D8962 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 70F6AD2A27E62E5900F61642 /* Products */;
 			projectDirPath = "";
@@ -297,6 +310,7 @@
 				7094337B27EDF85C00C5EBE9 /* AddCustomPillViewController.swift in Sources */,
 				7006462727E6481600060F52 /* PillDataCenter.swift in Sources */,
 				7033179327E64A6D000B99E1 /* CustomError.swift in Sources */,
+				707545DF27EE1CB1003D8962 /* TextView.swift in Sources */,
 				70F6AD4927E631D600F61642 /* PillViewModel.swift in Sources */,
 				7063312227EB5A5700225AEA /* HistoryDataCenter.swift in Sources */,
 				7083975727EA04F1008A1CC7 /* SettingViewModel.swift in Sources */,
@@ -312,12 +326,14 @@
 				70A3238F27ECA473006F1086 /* CustomPillDataCenter.swift in Sources */,
 				7063312727EB5F9100225AEA /* DotView.swift in Sources */,
 				70A3239527ECAEFB006F1086 /* CustomPillCell.swift in Sources */,
+				707545DD27EE19FF003D8962 /* TextField.swift in Sources */,
 				70B8014D27E79ACB000CABD1 /* SettingViewController.swift in Sources */,
 				70F6AD2D27E62E5900F61642 /* AppDelegate.swift in Sources */,
 				70F6AD2F27E62E5900F61642 /* SceneDelegate.swift in Sources */,
 				70A3238B27ECA395006F1086 /* CustomPill.swift in Sources */,
 				70F6AD4627E6319F00F61642 /* PillViewController.swift in Sources */,
 				7033179627E64EE1000B99E1 /* Constants.swift in Sources */,
+				707545E427EE2307003D8962 /* AddCustomPillViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +557,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		707545E027EE22D3003D8962 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -553,6 +577,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7006461A27E6384000060F52 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		707545E127EE22D4003D8962 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 707545E027EE22D3003D8962 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

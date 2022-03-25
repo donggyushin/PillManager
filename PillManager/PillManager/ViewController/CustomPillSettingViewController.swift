@@ -9,7 +9,7 @@ import UIKit
 
 class CustomPillSettingViewController: UIViewController {
     
-    private let viewModel: CustomPillSettingViewModel = .init(customPillDataCenter: CustomPillDataCenter.test)
+    let viewModel: CustomPillSettingViewModel = .init(customPillDataCenter: CustomPillDataCenter.test)
     
     private lazy var tableView: UITableView = {
         let view: UITableView = .init(frame: .zero, style: UITableView.Style.insetGrouped)

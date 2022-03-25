@@ -9,6 +9,38 @@ import UIKit
 
 class AddCustomPillViewController: UIViewController {
     
+    let viewModel: AddCustomPillViewModel = .init()
+    
+    private let scrollView: UIScrollView = {
+        let view: UIScrollView = .init()
+        view.showsVerticalScrollIndicator = false
+        return view
+    }()
+    
+    private lazy var timePicker: UIDatePicker = {
+        let view: UIDatePicker = .init()
+        view.preferredDatePickerStyle = .compact
+        view.datePickerMode = .time
+        view.addTarget(self, action: #selector(handleDatePicker), for: .valueChanged)
+        return view
+    }()
+    
+    private let textField: TextField = .init(placeholder: "Title")
+    
+    private let textView: TextView = {
+        let view = TextView(placeholder: "Description")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        return view
+    }()
+    
+    private lazy var verticalStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [textField, textView])
+        view.axis = .vertical
+        view.spacing = 20
+        return view
+    }()
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -23,5 +55,30 @@ class AddCustomPillViewController: UIViewController {
     
     private func configUI() {
         view.backgroundColor = .systemBackground
+        view.addSubview(scrollView)
+        scrollView.addSubview(timePicker)
+        scrollView.addSubview(verticalStackView)
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        timePicker.translatesAutoresizingMaskIntoConstraints = false
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            timePicker.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 10),
+            timePicker.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            verticalStackView.topAnchor.constraint(equalTo: timePicker.bottomAnchor, constant: 20),
+            verticalStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            verticalStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20)
+        ])
+        
+        scrollView.subviews.last?.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -50).isActive = true
+    }
+    
+    @objc private func handleDatePicker(_ sender: UIDatePicker) {
+        print("DEBUG: sender.date: \(sender.date)")
     }
 }
