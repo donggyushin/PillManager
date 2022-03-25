@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class AddCustomPillViewController: UIViewController {
     
     let viewModel: AddCustomPillViewModel = .init()
+    
+    private let disposeBag: DisposeBag = .init()
     
     private let scrollView: UIScrollView = {
         let view: UIScrollView = .init()
@@ -21,7 +25,6 @@ class AddCustomPillViewController: UIViewController {
         let view: UIDatePicker = .init()
         view.preferredDatePickerStyle = .compact
         view.datePickerMode = .time
-        view.addTarget(self, action: #selector(handleDatePicker), for: .valueChanged)
         return view
     }()
     
@@ -51,6 +54,21 @@ class AddCustomPillViewController: UIViewController {
     
     override func viewDidLoad() {
         configUI()
+        bind()
+    }
+    
+    private func bind() {
+        timePicker.rx.date.subscribe(onNext: { [weak self] date in
+            self?.viewModel.selectedDate = date
+        }).disposed(by: disposeBag)
+        
+        textField.rx.text.compactMap({ $0 }).subscribe(onNext: { [weak self] text in
+            self?.viewModel.title = text
+        }).disposed(by: disposeBag)
+        
+        textView.rx.text.subscribe(onNext: { [weak self] text in
+            self?.viewModel.description = text
+        }).disposed(by: disposeBag)
     }
     
     private func configUI() {
@@ -76,9 +94,5 @@ class AddCustomPillViewController: UIViewController {
         ])
         
         scrollView.subviews.last?.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -50).isActive = true
-    }
-    
-    @objc private func handleDatePicker(_ sender: UIDatePicker) {
-        print("DEBUG: sender.date: \(sender.date)")
     }
 }

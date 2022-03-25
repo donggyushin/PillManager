@@ -29,6 +29,10 @@ class CustomPillSettingViewModel {
         fetchPills()
     }
     
+    public func pillAdded() {
+        fetchPills()
+    }
+    
     private func bind() {
         
     }

@@ -10,4 +10,19 @@ import Combine
 
 class AddCustomPillViewModel {
     var cancellables: Set<AnyCancellable> = .init()
+    
+    @Published var selectedDate: Date = .init()
+    @Published var title: String = ""
+    @Published var description: String?
+    @Published var isDoneButtonEnable = false
+    
+    init() {
+        bind()
+    }
+    
+    private func bind() {
+        $title.sink { [weak self] text in
+            self?.isDoneButtonEnable = !text.isEmpty
+        }.store(in: &cancellables)
+    }
 }
