@@ -20,6 +20,8 @@
 		706CB3E127E8C249004A2924 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706CB3E027E8C249004A2924 /* UIView+Extension.swift */; };
 		7083975327E9FC9D008A1CC7 /* NotificationDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7083975227E9FC9D008A1CC7 /* NotificationDataCenter.swift */; };
 		7083975727EA04F1008A1CC7 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7083975627EA04F1008A1CC7 /* SettingViewModel.swift */; };
+		7094337927EDF67000C5EBE9 /* AddCustomPillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7094337827EDF67000C5EBE9 /* AddCustomPillCell.swift */; };
+		7094337B27EDF85C00C5EBE9 /* AddCustomPillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7094337A27EDF85C00C5EBE9 /* AddCustomPillViewController.swift */; };
 		70A3238B27ECA395006F1086 /* CustomPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A3238A27ECA395006F1086 /* CustomPill.swift */; };
 		70A3238D27ECA3E5006F1086 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A3238C27ECA3E5006F1086 /* Time.swift */; };
 		70A3238F27ECA473006F1086 /* CustomPillDataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A3238E27ECA473006F1086 /* CustomPillDataCenter.swift */; };
@@ -49,6 +51,8 @@
 		706CB3E027E8C249004A2924 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		7083975227E9FC9D008A1CC7 /* NotificationDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDataCenter.swift; sourceTree = "<group>"; };
 		7083975627EA04F1008A1CC7 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		7094337827EDF67000C5EBE9 /* AddCustomPillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomPillCell.swift; sourceTree = "<group>"; };
+		7094337A27EDF85C00C5EBE9 /* AddCustomPillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomPillViewController.swift; sourceTree = "<group>"; };
 		70A3238A27ECA395006F1086 /* CustomPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPill.swift; sourceTree = "<group>"; };
 		70A3238C27ECA3E5006F1086 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		70A3238E27ECA473006F1086 /* CustomPillDataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPillDataCenter.swift; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 			children = (
 				7063312627EB5F9100225AEA /* DotView.swift */,
 				70A3239427ECAEFB006F1086 /* CustomPillCell.swift */,
+				7094337827EDF67000C5EBE9 /* AddCustomPillCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				70F6AD4527E6319F00F61642 /* PillViewController.swift */,
 				70B8014C27E79ACB000CABD1 /* SettingViewController.swift */,
 				70A3239227ECAE47006F1086 /* CustomPillSettingViewController.swift */,
+				7094337A27EDF85C00C5EBE9 /* AddCustomPillViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -288,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7094337B27EDF85C00C5EBE9 /* AddCustomPillViewController.swift in Sources */,
 				7006462727E6481600060F52 /* PillDataCenter.swift in Sources */,
 				7033179327E64A6D000B99E1 /* CustomError.swift in Sources */,
 				70F6AD4927E631D600F61642 /* PillViewModel.swift in Sources */,
@@ -298,6 +305,7 @@
 				70A3239327ECAE47006F1086 /* CustomPillSettingViewController.swift in Sources */,
 				70A3238D27ECA3E5006F1086 /* Time.swift in Sources */,
 				706CB3E127E8C249004A2924 /* UIView+Extension.swift in Sources */,
+				7094337927EDF67000C5EBE9 /* AddCustomPillCell.swift in Sources */,
 				70F6AD4327E62EB800F61642 /* SignInViewController.swift in Sources */,
 				7083975327E9FC9D008A1CC7 /* NotificationDataCenter.swift in Sources */,
 				7006462427E63D0700060F52 /* SignInViewModel.swift in Sources */,
