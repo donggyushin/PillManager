@@ -21,7 +21,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         Auth.auth().addStateDidChangeListener { auth, user in
             let rootViewController = UINavigationController()
-            rootViewController.setViewControllers([user == nil ? SignInViewController() : PillViewController()], animated: false)
+            
+            if CustomPillDataCenter.live.fetchPillsFromUserDefaults().isEmpty {
+                rootViewController.setViewControllers([user == nil ? SignInViewController() : PillViewController()], animated: false)
+            } else {
+                rootViewController.setViewControllers([user == nil ? SignInViewController() : CustomPillSettingViewController()], animated: false)
+            }
+            
             self.window?.rootViewController = rootViewController
         }
     }
