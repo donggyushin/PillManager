@@ -25,4 +25,9 @@ struct Time: Codable {
         hour = data["hour"] as? Int ?? 0
         minute = data["minute"] as? Int ?? 0
     }
+    
+    init(hour: Int, minute: Int) {
+        self.hour = hour
+        self.minute = minute
+    }
 }

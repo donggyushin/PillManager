@@ -11,9 +11,17 @@ import RxSwift
 
 class AddCustomPillViewController: UIViewController {
     
-    let viewModel: AddCustomPillViewModel = .init()
+    let viewModel: AddCustomPillViewModel = .init(customPillDataCenter: CustomPillDataCenter.live)
     
     private let disposeBag: DisposeBag = .init()
+    
+    private lazy var doneButton: UIButton = {
+        let view: UIButton = .init(configuration: UIKit.UIButton.Configuration.plain(), primaryAction: UIKit.UIAction(handler: { _ in
+            self.viewModel.doneButtonTapped()
+        }))
+        view.setTitle("done", for: .normal)
+        return view
+    }()
     
     private let scrollView: UIScrollView = {
         let view: UIScrollView = .init()
@@ -28,9 +36,9 @@ class AddCustomPillViewController: UIViewController {
         return view
     }()
     
-    private let textField: TextField = .init(placeholder: "Title")
+    private let titleTextField: TextField = .init(placeholder: "Title")
     
-    private let textView: TextView = {
+    private let descriptionTextView: TextView = {
         let view = TextView(placeholder: "Description")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.heightAnchor.constraint(equalToConstant: 200).isActive = true
@@ -38,7 +46,7 @@ class AddCustomPillViewController: UIViewController {
     }()
     
     private lazy var verticalStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [textField, textView])
+        let view = UIStackView(arrangedSubviews: [titleTextField, descriptionTextView])
         view.axis = .vertical
         view.spacing = 20
         return view
@@ -62,16 +70,32 @@ class AddCustomPillViewController: UIViewController {
             self?.viewModel.selectedDate = date
         }).disposed(by: disposeBag)
         
-        textField.rx.text.compactMap({ $0 }).subscribe(onNext: { [weak self] text in
+        titleTextField.rx.text.compactMap({ $0 }).subscribe(onNext: { [weak self] text in
             self?.viewModel.title = text
         }).disposed(by: disposeBag)
         
-        textView.rx.text.subscribe(onNext: { [weak self] text in
+        descriptionTextView.rx.text.subscribe(onNext: { [weak self] text in
             self?.viewModel.description = text
         }).disposed(by: disposeBag)
+        
+        viewModel.$isDoneButtonEnable.sink { [weak self] enable in
+            self?.doneButton.isEnabled = enable
+        }.store(in: &viewModel.cancellables)
+        
+        viewModel.$isDone.filter({ $0 }).sink { [weak self] _ in
+            
+            if let customPillSettingViewController = self?.navigationController?.viewControllers.compactMap({ $0 as? CustomPillSettingViewController }).first {
+                customPillSettingViewController.viewModel.pillAdded()
+            }
+            
+            self?.navigationController?.popViewController(animated: true)
+        }.store(in: &viewModel.cancellables)
     }
     
     private func configUI() {
+        
+        navigationItem.rightBarButtonItem = .init(customView: doneButton)
+        
         view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
         scrollView.addSubview(timePicker)

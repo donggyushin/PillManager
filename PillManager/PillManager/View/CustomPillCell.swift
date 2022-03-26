@@ -32,6 +32,7 @@ class CustomPillCell: UITableViewCell {
     private lazy var descriptionLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.preferredFont(forTextStyle: .body)
+        view.numberOfLines = 0 
         return view
     }()
     

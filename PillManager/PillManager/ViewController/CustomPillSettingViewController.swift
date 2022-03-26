@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class CustomPillSettingViewController: UIViewController {
     
-    let viewModel: CustomPillSettingViewModel = .init(customPillDataCenter: CustomPillDataCenter.test)
+    let viewModel: CustomPillSettingViewModel = .live
     
     private lazy var tableView: UITableView = {
         let view: UITableView = .init(frame: .zero, style: UITableView.Style.insetGrouped)
@@ -29,12 +30,33 @@ class CustomPillSettingViewController: UIViewController {
     }
     
     private func bind() {
-        viewModel.$pills.sink { [weak self] _ in
-            self?.tableView.reloadData()
+        viewModel.$pills.debounce(for: 0.1, scheduler: RunLoop.main).sink { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }.store(in: &viewModel.cancellables)
+        
+        viewModel.$error.compactMap({ $0 }).sink { [weak self] error in
+            let alert: UIAlertController = .init(title: nil, message: error.localizedDescription, preferredStyle: .alert)
+            let yes: UIAlertAction = .init(title: "Yes", style: .default) { _ in
+                try? Auth.auth().signOut()
+            }
+            alert.addAction(yes)
+            self?.present(alert, animated: true)
         }.store(in: &viewModel.cancellables)
     }
     
     private func configUI() {
+        
+        // 만약 이게 첫번째 컨트롤러라면
+        if let rootViewController = window?.rootViewController as? UINavigationController {
+            if rootViewController.viewControllers.first == self {
+                navigationItem.rightBarButtonItem = .init(title: nil, image: UIImage(systemName: "gear"), primaryAction: .init(handler: { _ in
+                    self.navigationController?.pushViewController(SettingViewController(pillViewModel: PillViewModel.live), animated: true)
+                }), menu: nil)
+            }
+        }
+        
         view.backgroundColor = .systemBackground
         
         view.addSubview(tableView)
@@ -60,7 +82,7 @@ extension CustomPillSettingViewController: UITableViewDelegate {
 
 extension CustomPillSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.pills.count + 1
+        return viewModel.pills.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

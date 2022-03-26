@@ -9,7 +9,10 @@ import Foundation
 import Combine
 import UserNotifications
 
-class PillViewModel {
+final class PillViewModel {
+    
+    static let live: PillViewModel = .init(pillDataCenter: PillDataCenter.live, notificationDataCenter: NotificationDataCenter.live, historyDataCenter: HistoryDataCenter.live)
+    static let test: PillViewModel = .init(pillDataCenter: PillDataCenter.live, notificationDataCenter: NotificationDataCenter.live, historyDataCenter: HistoryDataCenter.live)
     
     enum Status: String {
         case have = "I already have pills"
@@ -31,7 +34,7 @@ class PillViewModel {
     private let notificationDataCenter: NotificationDataCenter
     private let historyDataCenter: HistoryDataCenter
     
-    init(pillDataCenter: PillDataCenter, notificationDataCenter: NotificationDataCenter, historyDataCenter: HistoryDataCenter) {
+    private init(pillDataCenter: PillDataCenter, notificationDataCenter: NotificationDataCenter, historyDataCenter: HistoryDataCenter) {
         self.pillDataCenter = pillDataCenter
         self.notificationDataCenter = notificationDataCenter
         self.historyDataCenter = historyDataCenter

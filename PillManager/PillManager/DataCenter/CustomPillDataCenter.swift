@@ -16,6 +16,8 @@ struct CustomPillDataCenter {
     var savePill: (_ pill: CustomPill, _ completion: ((Error?) -> Void)?) -> Void
     var fetchPills: (_ completion: ((Result<[CustomPill], Error>) -> Void)?) -> Void
     var deletePill: (_ pill: CustomPill, _ completion: ((Error?) -> Void)?) -> Void
+    var fetchPillsFromUserDefaults: () -> [CustomPill]
+    private var savePillsToUserDefaults: ([CustomPill]) -> Void
 }
 
 extension CustomPillDataCenter {
@@ -60,7 +62,9 @@ extension CustomPillDataCenter {
                 if let error = error {
                     completion?(.failure(error))
                 } else {
-                    completion?(.success(querySnapshot?.documents.compactMap({ $0.data() }).map({CustomPill(data: $0)}) ?? []))
+                    let pills = querySnapshot?.documents.compactMap({ $0.data() }).map({CustomPill(data: $0)}) ?? []
+                    CustomPillDataCenter.live.savePillsToUserDefaults(pills)
+                    completion?(.success(pills))
                 }
                 
             }
@@ -78,6 +82,21 @@ extension CustomPillDataCenter {
             .collection("list")
             .document(pill.id)
             .delete(completion: completion)
+    } fetchPillsFromUserDefaults: {
+        let defaults = UserDefaults.standard
+        if let savedData = defaults.object(forKey: "custom-pills-user-defaults-key") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedPills = try? decoder.decode([CustomPill].self, from: savedData) {
+                return loadedPills
+            }
+        }
+        return []
+    } savePillsToUserDefaults: { pills in
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(pills) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: "custom-pills-user-defaults-key")
+        }
     }
     
     static let test: CustomPillDataCenter = .init { pill, completion in
@@ -109,7 +128,9 @@ extension CustomPillDataCenter {
         completion?(.success([customPill1, customPill2, customPill3]))
     } deletePill: { pill, completion in
         completion?(nil)
+    } fetchPillsFromUserDefaults: {
+        return []
+    } savePillsToUserDefaults: { pills in
+        print("do nothing")
     }
-
-
 }
