@@ -82,6 +82,11 @@ extension CustomPillSettingViewController: UITableViewDelegate {
 
 extension CustomPillSettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let rootViewController = window?.rootViewController as? UINavigationController {
+            if rootViewController.viewControllers.first == self {
+                return viewModel.pills.count
+            }
+        }
         return viewModel.pills.count + 1
     }
     
