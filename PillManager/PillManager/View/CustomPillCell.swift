@@ -29,6 +29,8 @@ class CustomPillCell: UITableViewCell {
         return view
     }()
     
+    private let blueDot: DotView = .init()
+    
     private lazy var descriptionLabel: UILabel = {
         let view = UILabel()
         view.font = UIFont.preferredFont(forTextStyle: .body)
@@ -47,19 +49,6 @@ class CustomPillCell: UITableViewCell {
         return view
     }()
     
-    private lazy var verticalStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel])
-        view.axis = .vertical
-        return view
-    }()
-    
-    private lazy var horizontalStackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [verticalStackView, button])
-        view.axis = .horizontal
-        view.alignment = .center
-        return view
-    }()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configUI()
@@ -71,21 +60,35 @@ class CustomPillCell: UITableViewCell {
     
     private func configUI() {
         backgroundColor = .systemBackground
-        contentView.addSubview(horizontalStackView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(blueDot)
+        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(button)
         
-        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        blueDot.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            horizontalStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            horizontalStackView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            horizontalStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            horizontalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            blueDot.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            blueDot.leftAnchor.constraint(equalTo: titleLabel.rightAnchor, constant: 8),
+            button.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            button.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
+            descriptionLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
+            descriptionLabel.rightAnchor.constraint(equalTo: button.leftAnchor),
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
+        
     }
     
     private func configUI(pill: CustomPill) {
         titleLabel.text = pill.title
         descriptionLabel.text = pill.description
         button.tintColor = pill.isTakenToday ? .systemRed : .systemBlue
+        blueDot.isHidden = !pill.isTakenYesterday
     }
 }
