@@ -10,7 +10,7 @@ import FirebaseAuth
 
 class PillViewController: UIViewController {
     
-    private let viewModel: PillViewModel = .init(pillDataCenter: PillDataCenter.live, notificationDataCenter: NotificationDataCenter.live, historyDataCenter: HistoryDataCenter.live)
+    private let viewModel: PillViewModel = .live
     
     private let blueDotView: DotView = {
         let view = DotView()

@@ -12,7 +12,7 @@ class SettingViewController: UIViewController {
     
     private lazy var customPillButton: UIButton = {
         let view: UIButton = .init(configuration: .plain(), primaryAction: .init(handler: { _ in
-            print("DEBUG: Navigate to custom pill controller")
+            self.navigationController?.pushViewController(CustomPillSettingViewController(), animated: true)
         }))
         view.setTitle("Custom pill", for: .normal)
         return view
